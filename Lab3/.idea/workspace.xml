@@ -42,13 +42,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../basicplayer3.0/basicplayer3.0/BasicPlayer3.0/lib/jl1.0.jar" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mysql-connector-java-8.0.21/mysql-connector-java-8.0.21/mysql-connector-java-8.0.21.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Driver">
     <configuration name="CECLab3S" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CECLab3S" />
       <module name="Lab3" />
@@ -56,8 +60,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Driver" />
+      <module name="Lab3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Driver" />
         <item itemvalue="Application.CECLab3S" />
       </list>
     </recent_temporary>
@@ -86,41 +98,64 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1040" y="118" key="#Project_Structure" timestamp="1600386496871">
+    <state x="-1214" y="125" width="1040" height="848" key="#Project_Structure" timestamp="1600818270327">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="-1040" y="118" key="#Project_Structure/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600386496871" />
-    <state x="-675" y="250" key="#com.intellij.ide.util.MemberChooser" timestamp="1600386642022">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state x="-1214" y="125" width="1040" height="848" key="#Project_Structure/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818270327" />
+    <state x="1245" y="250" key="#com.intellij.ide.util.MemberChooser" timestamp="1602281133616">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="-675" y="250" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600386642022" />
-    <state x="-740" y="298" key="FileChooserDialogImpl" timestamp="1600387799861">
+    <state x="1245" y="250" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602281133616" />
+    <state x="-800" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600818051724">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="-740" y="298" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600387799861" />
-    <state width="1877" height="742" key="GridCell.Tab.0.bottom" timestamp="1600392543057">
+    <state x="-800" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818051724" />
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602178877571">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600388415833" />
-    <state width="1877" height="742" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1600392543057" />
-    <state width="1877" height="742" key="GridCell.Tab.0.center" timestamp="1600392543057">
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602178877571" />
+    <state x="842" y="413" key="DetectedRootsChooserDialog" timestamp="1602177811868">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600388415833" />
-    <state width="1877" height="742" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1600392543057" />
-    <state width="1877" height="742" key="GridCell.Tab.0.left" timestamp="1600392543057">
+    <state x="842" y="413" key="DetectedRootsChooserDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602177811868" />
+    <state x="1180" y="298" key="FileChooserDialogImpl" timestamp="1602282700536">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600388415832" />
-    <state width="1877" height="742" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1600392543057" />
-    <state width="1877" height="742" key="GridCell.Tab.0.right" timestamp="1600392543057">
+    <state x="-740" y="298" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818267566" />
+    <state x="1180" y="298" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602282700536" />
+    <state width="914" height="203" key="GridCell.Tab.0.bottom" timestamp="1602284451652">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600388415833" />
-    <state width="1877" height="742" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1600392543057" />
-    <state x="-1040" y="118" key="SettingsEditor" timestamp="1600387805850">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state width="914" height="736" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519048" />
+    <state width="914" height="203" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
+    <state width="914" height="203" key="GridCell.Tab.0.center" timestamp="1602284451652">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="914" height="736" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519047" />
+    <state width="914" height="203" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
+    <state width="914" height="203" key="GridCell.Tab.0.left" timestamp="1602284451652">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="914" height="736" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519047" />
+    <state width="914" height="203" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
+    <state width="914" height="203" key="GridCell.Tab.0.right" timestamp="1602284451652">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="914" height="736" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519048" />
+    <state width="914" height="203" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
+    <state x="525" y="102" key="SettingsEditor" timestamp="1602282704161">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="-1040" y="118" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600387805850" />
+    <state x="525" y="102" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602282704161" />
+    <state x="749" y="419" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1602177470926">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="749" y="419" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602177470926" />
+    <state x="551" y="160" key="new project wizard" timestamp="1600826584279">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="551" y="160" key="new project wizard/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1600826584279" />
   </component>
 </project>
