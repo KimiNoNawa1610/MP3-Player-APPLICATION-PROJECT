@@ -47,7 +47,9 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mysql-connector-java-8.0.21/mysql-connector-java-8.0.21/mysql-connector-java-8.0.21.jar" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="461" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="380" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mp3agic-0.9.2.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -111,44 +113,44 @@
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
     <state x="-800" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818051724" />
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602178877571">
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602451040468">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602178877571" />
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602451040468" />
     <state x="842" y="413" key="DetectedRootsChooserDialog" timestamp="1602177811868">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="842" y="413" key="DetectedRootsChooserDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602177811868" />
-    <state x="1180" y="298" key="FileChooserDialogImpl" timestamp="1602282700536">
+    <state x="1180" y="298" key="FileChooserDialogImpl" timestamp="1602451149972">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="-740" y="298" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818267566" />
-    <state x="1180" y="298" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602282700536" />
-    <state width="914" height="203" key="GridCell.Tab.0.bottom" timestamp="1602284451652">
+    <state x="1180" y="298" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602451149972" />
+    <state width="1877" height="247" key="GridCell.Tab.0.bottom" timestamp="1602459906383">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="914" height="736" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519048" />
-    <state width="914" height="203" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
-    <state width="914" height="203" key="GridCell.Tab.0.center" timestamp="1602284451652">
+    <state width="1877" height="247" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602459906383" />
+    <state width="1877" height="247" key="GridCell.Tab.0.center" timestamp="1602459906383">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="914" height="736" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519047" />
-    <state width="914" height="203" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
-    <state width="914" height="203" key="GridCell.Tab.0.left" timestamp="1602284451652">
+    <state width="1877" height="247" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602459906383" />
+    <state width="1877" height="247" key="GridCell.Tab.0.left" timestamp="1602459906383">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="914" height="736" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519047" />
-    <state width="914" height="203" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
-    <state width="914" height="203" key="GridCell.Tab.0.right" timestamp="1602284451652">
+    <state width="1877" height="247" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602459906383" />
+    <state width="1877" height="247" key="GridCell.Tab.0.right" timestamp="1602459906383">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="914" height="736" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600818519048" />
-    <state width="914" height="203" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602284451652" />
-    <state x="525" y="102" key="SettingsEditor" timestamp="1602282704161">
+    <state width="1877" height="247" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602459906383" />
+    <state x="525" y="102" key="SettingsEditor" timestamp="1602451154330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="-1040" y="118" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600387805850" />
-    <state x="525" y="102" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602282704161" />
+    <state x="525" y="102" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1602451154330" />
     <state x="749" y="419" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1602177470926">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
