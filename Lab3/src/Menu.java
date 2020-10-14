@@ -23,7 +23,7 @@ CECS 343-project
  */
 class StreamPlayerGUI extends JFrame {
 
-    private ArrayList<String[]> storage=new ArrayList<>();
+    private ArrayList<String[]>SongURl=new ArrayList<>();
 
     private boolean isPause;
 
@@ -31,7 +31,7 @@ class StreamPlayerGUI extends JFrame {
 
     private JPanel main;
 
-    private JButton Play,Pause,Skipf, Skipb;
+    private JButton Play,Pause,Skipf, Skipb, Delete;
 
     private ButtonListener bl= new ButtonListener();
 
@@ -56,7 +56,7 @@ class StreamPlayerGUI extends JFrame {
     private String url="jdbc:mysql://localhost:3306/mp3player";
     private String columns;
 
-    public StreamPlayerGUI() {
+    public StreamPlayerGUI() throws SQLException {
 
         main = new JPanel();
 
@@ -76,8 +76,9 @@ class StreamPlayerGUI extends JFrame {
                 String genre=resultSet.getString("Genre");
                 String artist=resultSet.getString("Artist");
                 String year=resultSet.getString("Year");
+                String URl=resultSet.getString("URL");
                 newTable.addRow(new Object[]{iD,title,genre,artist,year});
-
+                SongURl.add(new String[]{title, URl});
             }
             System.out.println("Done");
 
@@ -87,7 +88,7 @@ class StreamPlayerGUI extends JFrame {
 
 
         table=new JTable(newTable);
-        table.setAutoCreateColumnsFromModel(true);
+
 
         MouseListener mouseListener = new MouseAdapter() {
             //this will print the selected row index when a user clicks the table
@@ -106,13 +107,15 @@ class StreamPlayerGUI extends JFrame {
 
         table.setVisible(true);
 
-        Skipb=new JButton(">>");
+        Skipf=new JButton(">>");
 
         Play=new JButton(">");
 
         Pause=new JButton("| |");
 
-        Skipf=new JButton("<<");
+        Skipb=new JButton("<<");
+
+        Delete=new JButton("Delete");
 
         Play.addActionListener(bl);
 
@@ -122,19 +125,32 @@ class StreamPlayerGUI extends JFrame {
 
         Skipb.addActionListener(sb);
 
+        Delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    deleteSong();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
         scrollPane = new JScrollPane(table);
 
-        scrollPane.setPreferredSize(new Dimension(500,100));
+        scrollPane.setPreferredSize(new Dimension(500,30*SongURl.size()));
 
         main.add(scrollPane);
 
-        main.add(Skipf);
+        main.add(Skipb);
 
         main.add(Play);
 
         main.add(Pause);
 
-        main.add(Skipb);
+        main.add(Skipf);
+
+        main.add(Delete);
 
         main.setDropTarget(new MyDropTarget(this));
 
@@ -142,7 +158,7 @@ class StreamPlayerGUI extends JFrame {
 
         this.setTitle("StreamPlayer by Nhan Vo");//change the name to yours
 
-        this.setSize(525, 180);
+        this.setSize(525, 60+50*SongURl.size());
 
         this.add(main);
 
@@ -151,26 +167,35 @@ class StreamPlayerGUI extends JFrame {
     }
 
     public String getURL(){
-
-        return "D:\\CECS-343\\Lab3\\Big City Boi - Binz_ Touliver.mp3";
-
+        String n= SongURl.get(CurrentSelectedRow)[1];
+        return n;
     }
 
     public void addSong(String n) throws InvalidDataException, IOException, UnsupportedTagException, SQLException {
         Mp3Song song=new Mp3Song(n);
-        String user="root";
-        String password="";
-        String url="jdbc:mysql://localhost:3306/mp3player";
         Connection connection = DriverManager.getConnection(url, user, password);
-        String insert="INSERT INTO `songs`(Title, Genre, Artist, Year) VALUES (?,?,?,?)";
+        String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, URL) VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement=connection.prepareStatement(insert);
         preparedStatement.setString(1,song.getTitle());
         preparedStatement.setString(2,song.getGenres());
         preparedStatement.setString(3,song.getArtist());
-        preparedStatement.setInt(4,2020);
-        System.out.println(song.getReleasedYear());
+        preparedStatement.setInt(4,song.getReleasedYear());
+        preparedStatement.setString(5,song.getURL());
         preparedStatement.executeUpdate();
+        SongURl.add(new String[]{song.getTitle(),song.getURL()});
+        newTable.addRow(new Object[]{song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
     }
+
+    public void deleteSong() throws SQLException {
+        Connection connection = DriverManager.getConnection(url, user, password);
+        String delete="DELETE FROM songs WHERE Title= '"+SongURl.get(CurrentSelectedRow)[0]+"'";
+        System.out.println(delete);
+        PreparedStatement preparedStatement=connection.prepareStatement(delete);
+        preparedStatement.executeUpdate();
+        newTable.removeRow(CurrentSelectedRow);
+        SongURl.remove(CurrentSelectedRow);
+    }
+
 
     class ButtonListener implements ActionListener {
 
@@ -244,7 +269,7 @@ class StreamPlayerGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            CurrentSelectedRow+=1;
+            CurrentSelectedRow+=2;
             String url=getURL();
             try {
                 player.open(new File(url));
