@@ -31,7 +31,7 @@ class StreamPlayerGUI extends JFrame {
 
     private JPanel main;
 
-    private JButton Play,Pause,Skipf, Skipb, Delete;
+    private JButton Play,Pause,Skipf, Skipb, Delete,Add;
 
     private ButtonListener bl= new ButtonListener();
 
@@ -117,6 +117,8 @@ class StreamPlayerGUI extends JFrame {
 
         Delete=new JButton("Delete");
 
+        Add =new JButton("Add");
+
         Play.addActionListener(bl);
 
         Pause.addActionListener(pl);
@@ -130,6 +132,24 @@ class StreamPlayerGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     deleteSong();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+        Add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               String url =JOptionPane.showInputDialog(this,"Enter the URL of the song");
+                try {
+                    addSong(url);
+                } catch (UnsupportedTagException unsupportedTagException) {
+                    unsupportedTagException.printStackTrace();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (InvalidDataException invalidDataException) {
+                    invalidDataException.printStackTrace();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -151,6 +171,8 @@ class StreamPlayerGUI extends JFrame {
         main.add(Skipf);
 
         main.add(Delete);
+
+        main.add(Add);
 
         main.setDropTarget(new MyDropTarget(this));
 
