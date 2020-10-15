@@ -5,6 +5,7 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -56,6 +57,8 @@ class StreamPlayerGUI extends JFrame {
     private String url="jdbc:mysql://localhost:3306/mp3player";
     private String columns;
 
+    private Connection connection = DriverManager.getConnection(url, user, password);
+
     public StreamPlayerGUI() throws SQLException {
 
         main = new JPanel();
@@ -63,7 +66,6 @@ class StreamPlayerGUI extends JFrame {
         main.setLayout(new FlowLayout());
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to SQL data base");
             Statement statement=connection.createStatement();
             columns="SELECT * FROM songs";
@@ -78,7 +80,7 @@ class StreamPlayerGUI extends JFrame {
                 String year=resultSet.getString("Year");
                 String URl=resultSet.getString("URL");
                 newTable.addRow(new Object[]{iD,title,genre,artist,year});
-                SongURl.add(new String[]{title, URl});
+                SongURl.add(new String[]{iD, URl});
             }
             System.out.println("Done");
 
@@ -88,6 +90,7 @@ class StreamPlayerGUI extends JFrame {
 
 
         table=new JTable(newTable);
+
 
 
         MouseListener mouseListener = new MouseAdapter() {
@@ -100,10 +103,10 @@ class StreamPlayerGUI extends JFrame {
         table.addMouseListener(mouseListener);
 
         TableColumn column = table.getColumnModel().getColumn(0);
-        column.setPreferredWidth(150);
+        column.setPreferredWidth(50);
 
         column = table.getColumnModel().getColumn(1); //Description is Column 1
-        column.setPreferredWidth(30);
+        column.setPreferredWidth(150);
 
         table.setVisible(true);
 
@@ -158,7 +161,7 @@ class StreamPlayerGUI extends JFrame {
 
         scrollPane = new JScrollPane(table);
 
-        scrollPane.setPreferredSize(new Dimension(500,30*SongURl.size()));
+        scrollPane.setPreferredSize(new Dimension(500,75+30*SongURl.size()));
 
         main.add(scrollPane);
 
@@ -180,7 +183,7 @@ class StreamPlayerGUI extends JFrame {
 
         this.setTitle("StreamPlayer by Nhan Vo");//change the name to yours
 
-        this.setSize(525, 60+50*SongURl.size());
+        this.setSize(525, 200+50*SongURl.size());
 
         this.add(main);
 
@@ -195,7 +198,6 @@ class StreamPlayerGUI extends JFrame {
 
     public void addSong(String n) throws InvalidDataException, IOException, UnsupportedTagException, SQLException {
         Mp3Song song=new Mp3Song(n);
-        Connection connection = DriverManager.getConnection(url, user, password);
         String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, URL) VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement=connection.prepareStatement(insert);
         preparedStatement.setString(1,song.getTitle());
@@ -204,14 +206,33 @@ class StreamPlayerGUI extends JFrame {
         preparedStatement.setInt(4,song.getReleasedYear());
         preparedStatement.setString(5,song.getURL());
         preparedStatement.executeUpdate();
-        SongURl.add(new String[]{song.getTitle(),song.getURL()});
-        newTable.addRow(new Object[]{song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
+        SongURl.add(new String[]{getLastestSongId(),song.getURL()});
+        newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
+    }
+
+    public String getLastestSongId(){
+        int max;
+        if(isEmpty()){
+            max=0;
+        }
+        else{
+            max= Integer.parseInt(SongURl.get(0)[0]);
+            for(int i=0;i<SongURl.size();i++){
+                int n=Integer.parseInt(SongURl.get(i)[0]);
+                if(n>max){
+                    max=n;
+                }
+            }
+        }
+        return Integer.toString(max+1);
+    }
+
+    public Boolean isEmpty(){
+        return (SongURl.size()==0) ? true:false;
     }
 
     public void deleteSong() throws SQLException {
-        Connection connection = DriverManager.getConnection(url, user, password);
-        String delete="DELETE FROM songs WHERE Title= '"+SongURl.get(CurrentSelectedRow)[0]+"'";
-        System.out.println(delete);
+        String delete="DELETE FROM songs WHERE SongID=" +SongURl.get(CurrentSelectedRow)[0];
         PreparedStatement preparedStatement=connection.prepareStatement(delete);
         preparedStatement.executeUpdate();
         newTable.removeRow(CurrentSelectedRow);
@@ -226,7 +247,6 @@ class StreamPlayerGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
             String url=getURL();
-
             //create if, output and url assignment statements for the other two channels
 
             try {
@@ -239,21 +259,13 @@ class StreamPlayerGUI extends JFrame {
 
                 }
 
-                else if(pl.getPauseRow()!=CurrentSelectedRow){
+                else{
 
                     player.open(new File(url));
 
                     player.play();
 
                     isPause=false;
-
-                }
-
-                else{
-
-                    player.open(new File(url));
-
-                    player.play();
 
                 }
 
@@ -270,10 +282,14 @@ class StreamPlayerGUI extends JFrame {
     }
 
     class PauseListener implements ActionListener {
-        int PauseRow=CurrentSelectedRow;
+        int PauseRow;
+
         @Override
         public void actionPerformed(ActionEvent e) {
             try{
+                PauseRow=CurrentSelectedRow;
+                System.out.println(CurrentSelectedRow);
+                System.out.println(PauseRow);
                 player.pause();
                 isPause=true;
             } catch (BasicPlayerException basicPlayerException) {
@@ -291,7 +307,7 @@ class StreamPlayerGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            CurrentSelectedRow+=2;
+            CurrentSelectedRow+=1;
             String url=getURL();
             try {
                 player.open(new File(url));
