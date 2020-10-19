@@ -21,12 +21,14 @@ Nhan Vo
 
 CECS 343-project
 
- */
+*/
 class StreamPlayerGUI extends JFrame {
 
     private ArrayList<String[]>SongURl=new ArrayList<>();
 
     private boolean isPause;
+
+    private boolean isPlaying;
 
     private BasicPlayer player;
 
@@ -43,6 +45,8 @@ class StreamPlayerGUI extends JFrame {
     private SkipBackward sb=new SkipBackward();
 
     private JTable table;
+
+    private JPopupMenu popmenu=new JPopupMenu();
 
     private JScrollPane scrollPane;
 
@@ -88,10 +92,9 @@ class StreamPlayerGUI extends JFrame {
             throwables.printStackTrace();
         }
 
-
         table=new JTable(newTable);
 
-
+        popmenu.setPopupSize(50,100);
 
         MouseListener mouseListener = new MouseAdapter() {
             //this will print the selected row index when a user clicks the table
@@ -147,14 +150,8 @@ class StreamPlayerGUI extends JFrame {
                String url =JOptionPane.showInputDialog(this,"Enter the URL of the song");
                 try {
                     addSong(url);
-                } catch (UnsupportedTagException unsupportedTagException) {
+                } catch (UnsupportedTagException | SQLException | InvalidDataException | IOException unsupportedTagException) {
                     unsupportedTagException.printStackTrace();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                } catch (InvalidDataException invalidDataException) {
-                    invalidDataException.printStackTrace();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
                 }
             }
         });
@@ -162,6 +159,52 @@ class StreamPlayerGUI extends JFrame {
         scrollPane = new JScrollPane(table);
 
         scrollPane.setPreferredSize(new Dimension(500,75+30*SongURl.size()));
+
+        JMenuItem add=new JMenuItem("Add");
+
+        JMenuItem delete=new JMenuItem("Delete");
+
+        JMenuItem play=new JMenuItem("Play");
+
+        add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String url =JOptionPane.showInputDialog(this,"Enter the URL of the song");
+                try {
+                    addSong(url);
+                } catch (InvalidDataException | IOException | UnsupportedTagException | SQLException invalidDataException) {
+                    invalidDataException.printStackTrace();
+                }
+            }
+        });
+
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    deleteSong();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+        play.addActionListener(bl);
+
+        popmenu.add(add);
+
+        popmenu.add(delete);
+
+        popmenu.add(play);
+
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if(e.isPopupTrigger()){
+                    popmenu.show(e.getComponent(),e.getX(),e.getY());
+                }
+            }
+        });
 
         main.add(scrollPane);
 
@@ -239,7 +282,6 @@ class StreamPlayerGUI extends JFrame {
         SongURl.remove(CurrentSelectedRow);
     }
 
-
     class ButtonListener implements ActionListener {
 
         @Override
@@ -257,6 +299,8 @@ class StreamPlayerGUI extends JFrame {
 
                     isPause=false;
 
+                    isPlaying=true;
+
                 }
 
                 else{
@@ -266,6 +310,8 @@ class StreamPlayerGUI extends JFrame {
                     player.play();
 
                     isPause=false;
+
+                    isPlaying=true;
 
                 }
 
@@ -292,6 +338,7 @@ class StreamPlayerGUI extends JFrame {
                 System.out.println(PauseRow);
                 player.pause();
                 isPause=true;
+                isPlaying=false;
             } catch (BasicPlayerException basicPlayerException) {
                 basicPlayerException.printStackTrace();
             }
