@@ -51,7 +51,7 @@ class StreamPlayerGUI extends JFrame {
 
     private int CurrentSelectedRow;
 
-    private String[] Cname={"ID","Tilte","Genre","Artist","Released Year"};
+    private String[] Cname={"ID","Tilte","Genre","Artist","Released Year","Comment"};
 
     private DefaultTableModel newTable = new DefaultTableModel(Cname, 0);
 
@@ -81,8 +81,9 @@ class StreamPlayerGUI extends JFrame {
                 String genre=resultSet.getString("Genre");
                 String artist=resultSet.getString("Artist");
                 String year=resultSet.getString("Year");
+                String comment=resultSet.getString("Comment");
                 String URl=resultSet.getString("URL");
-                newTable.addRow(new Object[]{iD,title,genre,artist,year});
+                newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
                 SongURl.add(new String[]{iD, URl});
             }
             System.out.println("Done");
@@ -160,7 +161,7 @@ class StreamPlayerGUI extends JFrame {
 
         scrollPane = new JScrollPane(table);
 
-        scrollPane.setPreferredSize(new Dimension(500,75+30*SongURl.size()));
+        scrollPane.setPreferredSize(new Dimension(1450,250+10*SongURl.size()));
 
         JMenuItem add=new JMenuItem("Add");
 
@@ -199,14 +200,7 @@ class StreamPlayerGUI extends JFrame {
 
         popmenu.add(play);
 
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if(e.isPopupTrigger()){
-                    popmenu.show(e.getComponent(),e.getX(),e.getY());
-                }
-            }
-        });
+        table.setComponentPopupMenu(popmenu);
 
         main.add(scrollPane);
 
@@ -228,7 +222,7 @@ class StreamPlayerGUI extends JFrame {
 
         this.setTitle("StreamPlayer by Nhan Vo");//change the name to yours
 
-        this.setSize(525, 200+50*SongURl.size());
+        this.setSize(1500, 350+30*SongURl.size());
 
         this.add(main);
 
@@ -253,13 +247,14 @@ class StreamPlayerGUI extends JFrame {
             DisplayError(song.getTitle()+" already Exists ");
         }
         else{
-            String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, URL) VALUES (?,?,?,?,?)";
+            String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, Comment, URL) VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement=connection.prepareStatement(insert);
             preparedStatement.setString(1,song.getTitle());
             preparedStatement.setString(2,song.getGenres());
             preparedStatement.setString(3,song.getArtist());
             preparedStatement.setInt(4,song.getReleasedYear());
-            preparedStatement.setString(5,song.getURL());
+            preparedStatement.setString(5,song.getComment());
+            preparedStatement.setString(6,song.getURL());
             preparedStatement.executeUpdate();
             SongURl.add(new String[]{getLastestSongId(),song.getURL()});
             newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
@@ -404,7 +399,9 @@ class StreamPlayerGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            CurrentSelectedRow+=1;
+            if(CurrentSelectedRow<SongURl.size()-1){
+                CurrentSelectedRow+=1;
+            }
             String url=getURL();
             try {
                 player.open(new File(url));
@@ -420,7 +417,9 @@ class StreamPlayerGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            CurrentSelectedRow-=1;
+            if(CurrentSelectedRow>0){
+                CurrentSelectedRow-=1;
+            }
             String url=getURL();
             try {
                 player.open(new File(url));
