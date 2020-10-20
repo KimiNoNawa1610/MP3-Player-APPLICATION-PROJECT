@@ -5,7 +5,6 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -106,10 +105,13 @@ class StreamPlayerGUI extends JFrame {
         table.addMouseListener(mouseListener);
 
         TableColumn column = table.getColumnModel().getColumn(0);
-        column.setPreferredWidth(50);
+        column.setPreferredWidth(10);
 
         column = table.getColumnModel().getColumn(1); //Description is Column 1
         column.setPreferredWidth(150);
+
+        column=table.getColumnModel().getColumn(4);
+        column.setPreferredWidth(25);
 
         table.setVisible(true);
 
@@ -239,18 +241,29 @@ class StreamPlayerGUI extends JFrame {
         return n;
     }
 
+
+    public void DisplayError(String n){
+        JPanel error=new JPanel();
+        JOptionPane.showMessageDialog(error,n,"ERROR",JOptionPane.ERROR_MESSAGE);
+    }
+
     public void addSong(String n) throws InvalidDataException, IOException, UnsupportedTagException, SQLException {
         Mp3Song song=new Mp3Song(n);
-        String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, URL) VALUES (?,?,?,?,?)";
-        PreparedStatement preparedStatement=connection.prepareStatement(insert);
-        preparedStatement.setString(1,song.getTitle());
-        preparedStatement.setString(2,song.getGenres());
-        preparedStatement.setString(3,song.getArtist());
-        preparedStatement.setInt(4,song.getReleasedYear());
-        preparedStatement.setString(5,song.getURL());
-        preparedStatement.executeUpdate();
-        SongURl.add(new String[]{getLastestSongId(),song.getURL()});
-        newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
+        if(SongExist(song)){
+            DisplayError(song.getTitle()+" already Exists ");
+        }
+        else{
+            String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, URL) VALUES (?,?,?,?,?)";
+            PreparedStatement preparedStatement=connection.prepareStatement(insert);
+            preparedStatement.setString(1,song.getTitle());
+            preparedStatement.setString(2,song.getGenres());
+            preparedStatement.setString(3,song.getArtist());
+            preparedStatement.setInt(4,song.getReleasedYear());
+            preparedStatement.setString(5,song.getURL());
+            preparedStatement.executeUpdate();
+            SongURl.add(new String[]{getLastestSongId(),song.getURL()});
+            newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
+        }
     }
 
     public String getLastestSongId(){
@@ -270,20 +283,50 @@ class StreamPlayerGUI extends JFrame {
         return Integer.toString(max+1);
     }
 
+    public Boolean SongExist(Mp3Song song){
+        for(int i=0;i< SongURl.size();i++){
+            if(song.getURL().equals(SongURl.get(i)[1])){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Boolean isEmpty(){
+
         return (SongURl.size()==0) ? true:false;
+
+    }
+
+    public Boolean isPlaying(){
+        if(bl.getPlayingRow()==CurrentSelectedRow&& isPlaying==true){
+            return true;
+        }
+        return false;
     }
 
     public void deleteSong() throws SQLException {
         String delete="DELETE FROM songs WHERE SongID=" +SongURl.get(CurrentSelectedRow)[0];
-        PreparedStatement preparedStatement=connection.prepareStatement(delete);
-        preparedStatement.executeUpdate();
-        newTable.removeRow(CurrentSelectedRow);
-        SongURl.remove(CurrentSelectedRow);
+        if(isPlaying){
+            DisplayError("   Song id: "+SongURl.get(CurrentSelectedRow)[0]+" is playing \nCannot delete at this time");
+        }
+        else{
+            PreparedStatement preparedStatement=connection.prepareStatement(delete);
+            preparedStatement.executeUpdate();
+            newTable.removeRow(CurrentSelectedRow);
+            SongURl.remove(CurrentSelectedRow);
+            for(int i=0;i<SongURl.size();i++){
+                System.out.println(SongURl.get(i)[0]);
+            }
+            CurrentSelectedRow--;
+        }
     }
+
+
 
     class ButtonListener implements ActionListener {
 
+        int n;
         @Override
 
         public void actionPerformed(ActionEvent e) {
@@ -300,6 +343,8 @@ class StreamPlayerGUI extends JFrame {
                     isPause=false;
 
                     isPlaying=true;
+
+                    n=CurrentSelectedRow;
 
                 }
 
@@ -325,7 +370,12 @@ class StreamPlayerGUI extends JFrame {
 
         }
 
+        public int getPlayingRow(){
+            return n;
+        }
+
     }
+
 
     class PauseListener implements ActionListener {
         int PauseRow;

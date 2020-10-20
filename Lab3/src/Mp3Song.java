@@ -14,6 +14,7 @@ public class Mp3Song {
             Artist=d3v1Tag.getArtist();
             Genres=d3v1Tag.getGenreDescription();
             ReleasedYear=d3v1Tag.getYear();
+            System.out.println(ReleasedYear);
         }
         else{
             ID3v2 d3v2Tag= newfile.getId3v2Tag();
@@ -30,7 +31,7 @@ public class Mp3Song {
     }
 
     public String getArtist(){
-        if(Artist!=null){
+        if(!Artist.isEmpty()){
             return Artist;
         }
         else{
@@ -39,7 +40,7 @@ public class Mp3Song {
     }
 
     public String getGenres(){
-        if(Genres!=null){
+        if(!Genres.isEmpty()){
             return Genres;
         }
         else{
@@ -49,7 +50,7 @@ public class Mp3Song {
     }
 
     public String getTitle(){
-        if(Title!=null){
+        if(!Title.isEmpty()){
             return Title;
         }
         else{
@@ -58,7 +59,7 @@ public class Mp3Song {
     }
 
     public int getReleasedYear(){
-        if(ReleasedYear!=null){
+        if(!ReleasedYear.isEmpty()){
             return Integer.parseInt(ReleasedYear);
         }
         else{
