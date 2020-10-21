@@ -20,9 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12b18b24-9c94-49c3-a558-58be2e9822fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/CECS-343.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +51,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="proj" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Driver" />
+      <module name="CECS-343" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -76,21 +83,42 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="272" y="80" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602664664755">
+    <state x="272" y="39" width="1089" height="785" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603251941415">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="272" y="80" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1602664664755" />
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1602664663013">
+    <state x="272" y="39" width="1089" height="785" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603251941415" />
+    <state x="549" y="117" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1603251953050">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1602664663013" />
-    <state x="866" y="217" key="FileChooserDialogImpl" timestamp="1602663111310">
+    <state x="549" y="117" key="#com.intellij.ide.macro.MacrosDialog/0.0.1536.824@0.0.1536.824" timestamp="1603251953050" />
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603251806579">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="866" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602663111310" />
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1603251806579" />
+    <state x="866" y="217" key="FileChooserDialogImpl" timestamp="1603251981100">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="866" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603251981100" />
     <state x="-838" y="285" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600386202454" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603251994426">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603251994426">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603251994426">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603251994426">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
     <state x="-1235" y="164" key="new project wizard" timestamp="1600386204007">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>

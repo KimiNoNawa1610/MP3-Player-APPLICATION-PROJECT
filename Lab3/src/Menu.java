@@ -33,7 +33,7 @@ class StreamPlayerGUI extends JFrame {
 
     private JPanel main;
 
-    private JButton Play,Pause,Skipf, Skipb, Delete,Add;
+    private JButton Play,Pause,Skipf, Skipb, Delete,Add,justPlay;
 
     private ButtonListener bl= new ButtonListener();
 
@@ -46,6 +46,8 @@ class StreamPlayerGUI extends JFrame {
     private JTable table;
 
     private JPopupMenu popmenu=new JPopupMenu();
+
+    private JTextField playSong;
 
     private JScrollPane scrollPane;
 
@@ -128,6 +130,11 @@ class StreamPlayerGUI extends JFrame {
 
         Add =new JButton("Add");
 
+        justPlay = new JButton("Play without adding");
+
+
+        playSong = new JTextField("url to play song",15);
+
         Play.addActionListener(bl);
 
         Pause.addActionListener(pl);
@@ -192,6 +199,24 @@ class StreamPlayerGUI extends JFrame {
             }
         });
 
+        justPlay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String song=playSong.getText();
+                    try {
+                        player.open(new File(song));
+                        player.play();
+                    } catch (BasicPlayerException basicPlayerException) {
+                        basicPlayerException.printStackTrace();
+                    }
+                    isPause=false;
+
+                    isPlaying=true;
+
+                }
+            });
+
+
         play.addActionListener(bl);
 
         popmenu.add(add);
@@ -215,6 +240,10 @@ class StreamPlayerGUI extends JFrame {
         main.add(Delete);
 
         main.add(Add);
+
+        main.add(playSong);
+
+        main.add(justPlay);
 
         main.setDropTarget(new MyDropTarget(this));
 
