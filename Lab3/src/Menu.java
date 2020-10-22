@@ -33,7 +33,7 @@ class StreamPlayerGUI extends JFrame {
 
     private JPanel main;
 
-    private JButton Play,Pause,Skipf, Skipb, Delete,Add,justPlay;
+    private JButton Play,Pause,Skipf, Skipb, Delete,Add;
 
     private ButtonListener bl= new ButtonListener();
 
@@ -48,6 +48,8 @@ class StreamPlayerGUI extends JFrame {
     private JPopupMenu popmenu=new JPopupMenu();
 
     private JTextField playSong;
+
+    private JLabel notInData;
 
     private JScrollPane scrollPane;
 
@@ -130,10 +132,10 @@ class StreamPlayerGUI extends JFrame {
 
         Add =new JButton("Add");
 
-        justPlay = new JButton("Play without adding");
+        notInData= new JLabel("enter the url to just play song");
 
 
-        playSong = new JTextField("url to play song",15);
+        playSong = new JTextField("",15);
 
         Play.addActionListener(bl);
 
@@ -199,22 +201,6 @@ class StreamPlayerGUI extends JFrame {
             }
         });
 
-        justPlay.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String song=playSong.getText();
-                    try {
-                        player.open(new File(song));
-                        player.play();
-                    } catch (BasicPlayerException basicPlayerException) {
-                        basicPlayerException.printStackTrace();
-                    }
-                    isPause=false;
-
-                    isPlaying=true;
-
-                }
-            });
 
 
         play.addActionListener(bl);
@@ -241,9 +227,11 @@ class StreamPlayerGUI extends JFrame {
 
         main.add(Add);
 
+        main.add(notInData);
+
         main.add(playSong);
 
-        main.add(justPlay);
+
 
         main.setDropTarget(new MyDropTarget(this));
 
@@ -371,7 +359,19 @@ class StreamPlayerGUI extends JFrame {
                     n=CurrentSelectedRow;
 
                 }
+                else if(!playSong.getText().equals("")){
+                    String song=playSong.getText();
+                    try {
+                        player.open(new File(song));
+                        player.play();
+                    } catch (BasicPlayerException basicPlayerException) {
+                        basicPlayerException.printStackTrace();
+                    }
+                    isPause=false;
 
+                    isPlaying=true;
+
+                }
                 else{
 
                     player.open(new File(url));
