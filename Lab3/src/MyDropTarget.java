@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MyDropTarget extends DropTarget {
+
     private StreamPlayerGUI gui;
 
     public MyDropTarget(StreamPlayerGUI n){
@@ -23,11 +24,12 @@ class MyDropTarget extends DropTarget {
             result = (List) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
 
             for(Object o : result){
+
                 System.out.println(o.toString());
+
                 gui.addSong(o.toString());
+
             }
-
-
 
         }
         catch (Exception ex){
@@ -35,7 +37,7 @@ class MyDropTarget extends DropTarget {
            ex.printStackTrace();
 
         }
-    }
 
+    }
 
 }
