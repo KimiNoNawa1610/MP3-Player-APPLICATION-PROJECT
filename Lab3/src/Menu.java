@@ -26,8 +26,6 @@ class StreamPlayerGUI extends JFrame {
 
     private boolean isPlaying;
 
-    private JPanel Librarymenu;
-
     private int isPlayingrow;
 
     private final BasicPlayer player;
@@ -46,13 +44,13 @@ class StreamPlayerGUI extends JFrame {
 
         JPanel main = new JPanel();
 
+        TreeList listTree=new TreeList();
+
         JPanel sidePanel=new JPanel();
 
         sidePanel.setLayout(new FlowLayout());
 
         main.setLayout(new FlowLayout());
-
-        //main.add(sidePanel);
 
         JMenuBar topMenu=new JMenuBar();
 
@@ -70,11 +68,17 @@ class StreamPlayerGUI extends JFrame {
 
         menu.add(mitem3);
 
+        JMenuItem mitem4=new JMenuItem("Add Playlist");
+
+        menu.add(mitem4);
+
         topMenu.add(menu);
 
-        topMenu.add(Box.createHorizontalStrut(800));
+        //topMenu.add(Box.createHorizontalStrut(800));
 
-        main.add(topMenu);
+        this.add(topMenu, BorderLayout.NORTH);
+
+        this.add(listTree, BorderLayout.WEST);
 
         table=lib.getTable();
 
@@ -171,9 +175,17 @@ class StreamPlayerGUI extends JFrame {
 
         });
 
+        mitem4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
+                listTree.addPlaylist(listName);
+            }
+        });
+
         JScrollPane scrollPane = new JScrollPane(table);
 
-        scrollPane.setPreferredSize(new Dimension(850,300));
+        scrollPane.setPreferredSize(new Dimension(750,300));
 
         JMenuItem add=new JMenuItem("Add");
 
@@ -250,11 +262,13 @@ class StreamPlayerGUI extends JFrame {
 
         player = new BasicPlayer();
 
-        this.setTitle("StreamPlayer by Nhan Vo");//change the name to yours
+        this.setTitle("StreamPlayer by Nhan and Brandon");//change the name to yours
 
-        this.setSize(900, 450);
+        this.setSize(850, 450);
 
-        this.add(main);
+        //this.add(listTree);
+
+        this.add(main, BorderLayout.CENTER);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
