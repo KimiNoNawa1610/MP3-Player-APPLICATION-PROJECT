@@ -1,5 +1,8 @@
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class PlayList extends Library{
     private String name;
@@ -17,12 +20,19 @@ public class PlayList extends Library{
                 "Artist VARCHAR(250), "+
                 "Year INTEGER, "+
                 "Comment VARCHAR(350), "+
-                "URL VARCHAR(250), "+
+                "URL VARCHAR(250) "+
                 ");";
         statement.executeUpdate(newtable);
         System.out.println("Creating new playlist");
         System.out.println("New playlist created \n");
+        statement.close();
+    }
 
+    public void deletePlaylist(DefaultMutableTreeNode name) throws SQLException {
+        Statement statement=connection.createStatement();
+        String delete="DROP TABLE "+name;
+        statement.executeUpdate(delete);
+        System.out.println("deleted table: "+name);
     }
 
     public void setName(String name){
@@ -30,4 +40,16 @@ public class PlayList extends Library{
         this.name=name;
 
     }
+
+    public ArrayList<String> getPlalistname() throws SQLException {
+        ArrayList<String> names= new ArrayList<>();
+        Statement statement=connection.createStatement();
+        ResultSet resultset= statement.executeQuery("SHOW TABLES");
+        while(resultset.next()){
+            names.add(resultset.getString(1));
+        }
+        return names;
+    }
+
+
 }

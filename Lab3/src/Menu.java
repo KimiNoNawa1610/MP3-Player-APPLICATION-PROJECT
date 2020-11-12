@@ -48,35 +48,41 @@ class StreamPlayerGUI extends JFrame {
 
         JPanel sidePanel=new JPanel();
 
+        PlayList playlists=new PlayList();
+
         sidePanel.setLayout(new FlowLayout());
 
         main.setLayout(new FlowLayout());
 
-        JMenuBar topMenu=new JMenuBar();
+        JMenuBar topMenu1=new JMenuBar();
 
-        JMenu menu=new JMenu("Menu");
+        JMenu menu1=new JMenu("File");
+
+        JMenu menu2=new JMenu("Controls");
 
         JMenuItem mitem1=new JMenuItem("Play");
 
-        menu.add(mitem1);
+        menu2.add(mitem1);
 
-        JMenuItem mitem2=new JMenuItem("Add");
+        JMenuItem mitem2=new JMenuItem("Add File to Library");
 
-        menu.add(mitem2);
+        menu1.add(mitem2);
 
         JMenuItem mitem3=new JMenuItem("Delete");
 
-        menu.add(mitem3);
+        menu2.add(mitem3);
 
-        JMenuItem mitem4=new JMenuItem("Add Playlist");
+        JMenuItem mitem4=new JMenuItem("Add New Playlist");
 
-        menu.add(mitem4);
+        menu1.add(mitem4);
 
-        topMenu.add(menu);
+        topMenu1.add(menu1);
+
+        topMenu1.add(menu2);
 
         //topMenu.add(Box.createHorizontalStrut(800));
 
-        this.add(topMenu, BorderLayout.NORTH);
+        this.add(topMenu1, BorderLayout.NORTH);
 
         this.add(listTree, BorderLayout.WEST);
 
@@ -85,10 +91,6 @@ class StreamPlayerGUI extends JFrame {
         table.setRowHeight(20);
 
         TableColumnModel columnModel = table.getColumnModel();
-
-        JPopupMenu popmenu = new JPopupMenu();
-
-        popmenu.setPopupSize(50,100);
 
         MouseListener mouseListener = new MouseAdapter() {
             //this will print the selected row index when a user clicks the table
@@ -180,6 +182,12 @@ class StreamPlayerGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
                 listTree.addPlaylist(listName);
+                playlists.setName(listName);
+                try {
+                    playlists.createPlaylist();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
 
@@ -187,60 +195,7 @@ class StreamPlayerGUI extends JFrame {
 
         scrollPane.setPreferredSize(new Dimension(750,300));
 
-        JMenuItem add=new JMenuItem("Add");
-
-        JMenuItem delete=new JMenuItem("Delete");
-
-        JMenuItem play=new JMenuItem("Play");
-
-        add.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String n=FileOpener();
-
-                try {
-
-                    addSong(n);
-
-                } catch (InvalidDataException | IOException | UnsupportedTagException | SQLException invalidDataException) {
-
-                    invalidDataException.printStackTrace();
-
-                }
-
-            }
-
-        });
-
-        delete.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-
-                    deleteSong();
-
-                } catch (SQLException throwables) {
-
-                    throwables.printStackTrace();
-
-                }
-
-            }
-
-        });
-
-        play.addActionListener(bl);
-
-        popmenu.add(add);
-
-        popmenu.add(delete);
-
-        popmenu.add(play);
-
-        table.setComponentPopupMenu(popmenu);
+        table.setComponentPopupMenu(new PopupMenu());
 
         main.add(scrollPane);
 
@@ -424,6 +379,65 @@ class StreamPlayerGUI extends JFrame {
 
         }
 
+    }
+
+    class PopupMenu extends JPopupMenu{
+        public PopupMenu(){
+            setPopupSize(150,100);
+            JMenuItem add=new JMenuItem("Add song to library");
+
+            JMenuItem delete=new JMenuItem("Delete selected song");
+
+            JMenuItem play=new JMenuItem("Play song");
+
+            add.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    String n=FileOpener();
+
+                    try {
+
+                        addSong(n);
+
+                    } catch (InvalidDataException | IOException | UnsupportedTagException | SQLException invalidDataException) {
+
+                        invalidDataException.printStackTrace();
+
+                    }
+
+                }
+
+            });
+
+            delete.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+
+                        deleteSong();
+
+                    } catch (SQLException throwables) {
+
+                        throwables.printStackTrace();
+
+                    }
+
+                }
+
+            });
+
+            play.addActionListener(new ButtonListener());
+
+            this.add(add);
+
+            this.add(delete);
+
+            this.add(play);
+
+        }
     }
 
     class StopListener implements ActionListener{
