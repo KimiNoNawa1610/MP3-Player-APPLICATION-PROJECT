@@ -3,13 +3,14 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javax.swing.*;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,34 +23,39 @@ CECS 343-project
 */
 class StreamPlayerGUI extends JFrame {
 
+    private ArrayList<String[]>SongURl=new ArrayList<>();
+
     private boolean isPause;
 
     private boolean isPlaying;
 
-    private JPanel Librarymenu;
+    private BasicPlayer player;
 
-    private int isPlayingrow;
+    private JPanel main;
 
-    private final BasicPlayer player;
-
+<<<<<<< HEAD
 <<<<<<< HEAD
     private final PauseListener pl=new PauseListener();
 =======
     private JButton Play,Pause,Skipf, Skipb, Delete,Add,justPlay;
 >>>>>>> parent of ee638a2... enter correct button to just play song
+=======
+    private JButton Play,Pause,Skipf, Skipb, Delete,Add;
+>>>>>>> parent of 63c94ba... update
 
-    private final JTable table;
+    private ButtonListener bl= new ButtonListener();
 
-    private final JTextField playSong;
+    private PauseListener pl=new PauseListener();
 
-    private int CurrentSelectedRow;
+    private SkipFoward sf=new SkipFoward();
 
-    private final Library lib=new Library();
+    private SkipBackward sb=new SkipBackward();
 
-    public StreamPlayerGUI() throws SQLException {
+    private JTable table;
 
-        JPanel main = new JPanel();
+    private JPopupMenu popmenu=new JPopupMenu();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         TreeList listTree=new TreeList();
 
@@ -86,9 +92,21 @@ class StreamPlayerGUI extends JFrame {
         JMenuItem mitem2=new JMenuItem("Add File to Library");
 
         menu1.add(mitem2);
+=======
+    private JTextField playSong;
 
-        JMenuItem mitem3=new JMenuItem("Delete");
+    private JLabel notInData;
 
+    private JScrollPane scrollPane;
+
+    private int CurrentSelectedRow;
+
+    private String[] Cname={"ID","Tilte","Genre","Artist","Released Year","Comment"};
+>>>>>>> parent of 63c94ba... update
+
+    private DefaultTableModel newTable = new DefaultTableModel(Cname, 0);
+
+<<<<<<< HEAD
         menu2.add(mitem3);
 
         JMenuItem mitem4=new JMenuItem("Add New Playlist");
@@ -108,15 +126,52 @@ class StreamPlayerGUI extends JFrame {
 
         topMenu.add(Box.createHorizontalStrut(800));
 >>>>>>> parent of 8d16ae2... update change
+=======
+    private String user="root";
+    private String password="";
+    private String url="jdbc:mysql://localhost:3306/mp3player";
+    private String columns;
 
-        main.add(topMenu);
+    private Connection connection = DriverManager.getConnection(url, user, password);
 
-        table=lib.getTable();
+    public StreamPlayerGUI() throws SQLException {
+>>>>>>> parent of 63c94ba... update
 
-        table.setRowHeight(20);
+        main = new JPanel();
 
-        TableColumnModel columnModel = table.getColumnModel();
+        main.setLayout(new FlowLayout());
 
+        try {
+            System.out.println("Connected to SQL data base");
+            Statement statement=connection.createStatement();
+            columns="SELECT * FROM songs";
+            ResultSet resultSet=statement.executeQuery(columns);
+            System.out.println("Retrieveing information from SQL data base...");
+            while(resultSet.next()){
+                System.out.println("...");
+                String iD=resultSet.getString("SongID");
+                String title= resultSet.getString("Title");
+                String genre=resultSet.getString("Genre");
+                String artist=resultSet.getString("Artist");
+                String year=resultSet.getString("Year");
+                String comment=resultSet.getString("Comment");
+                String URl=resultSet.getString("URL");
+                newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
+                SongURl.add(new String[]{iD, URl});
+            }
+            System.out.println("Done");
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+<<<<<<< HEAD
+=======
+        table=new JTable(newTable);
+
+        popmenu.setPopupSize(50,100);
+
+>>>>>>> parent of 63c94ba... update
         MouseListener mouseListener = new MouseAdapter() {
             //this will print the selected row index when a user clicks the table
             public void mousePressed(MouseEvent e) {
@@ -126,90 +181,82 @@ class StreamPlayerGUI extends JFrame {
 
         table.addMouseListener(mouseListener);
 
+        TableColumn column = table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(10);
+
+        column = table.getColumnModel().getColumn(1); //Description is Column 1
+        column.setPreferredWidth(150);
+
+        column=table.getColumnModel().getColumn(4);
+        column.setPreferredWidth(25);
+
         table.setVisible(true);
 
-        JButton skipf = new JButton(">>");
+        Skipf=new JButton(">>");
 
-        JButton play1 = new JButton(">");
+        Play=new JButton(">");
 
-        JButton pause = new JButton("| |");
+        Pause=new JButton("| |");
 
-        JButton skipb = new JButton("<<");
+        Skipb=new JButton("<<");
 
-        JButton stop = new JButton("Stop");
-
-        JLabel notInData = new JLabel("enter the url to just play song");
-
-        playSong = new JTextField("",15);
-
-        ButtonListener bl = new ButtonListener();
-
-        play1.addActionListener(bl);
-
+<<<<<<< HEAD
 <<<<<<< HEAD
         pause.addActionListener(pl);
 =======
         justPlay = new JButton("Play without adding");
 >>>>>>> parent of ee638a2... enter correct button to just play song
+=======
+        Delete=new JButton("Delete");
+>>>>>>> parent of 63c94ba... update
 
-        SkipFoward sf = new SkipFoward();
+        Add =new JButton("Add");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         skipf.addActionListener(sf);
 =======
         playSong = new JTextField("url to play song",15);
 >>>>>>> parent of ee638a2... enter correct button to just play song
+=======
+        notInData= new JLabel("enter the url to just play song");
+>>>>>>> parent of 63c94ba... update
 
-        SkipBackward sb = new SkipBackward();
 
-        skipb.addActionListener(sb);
+        playSong = new JTextField("",15);
 
-        StopListener st=new StopListener();
+        Play.addActionListener(bl);
 
-        stop.addActionListener(st);
+        Pause.addActionListener(pl);
 
-        mitem1.addActionListener(bl);
+        Skipf.addActionListener(sf);
 
-        mitem2.addActionListener(new ActionListener() {
+        Skipb.addActionListener(sb);
 
+        Delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                String n=FileOpener();
-
                 try {
-
-                    addSong(n);
-
-                } catch (InvalidDataException | IOException | UnsupportedTagException | SQLException invalidDataException) {
-
-                    invalidDataException.printStackTrace();
-
-                }
-            }
-
-        });
-
-        mitem3.addActionListener(new ActionListener() {
-
-            @Override
-
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-
                     deleteSong();
-
                 } catch (SQLException throwables) {
-
                     throwables.printStackTrace();
-
                 }
-
             }
-
         });
 
+        Add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               String url =JOptionPane.showInputDialog(this,"Enter the URL of the song");
+                try {
+                    addSong(url);
+                } catch (UnsupportedTagException | SQLException | InvalidDataException | IOException unsupportedTagException) {
+                    unsupportedTagException.printStackTrace();
+                }
+            }
+        });
+
+<<<<<<< HEAD
 <<<<<<< HEAD
         mitem4.addActionListener(new ActionListener() {
             @Override
@@ -219,8 +266,11 @@ class StreamPlayerGUI extends JFrame {
                 playlists.setName(listName);
 =======
         JScrollPane scrollPane = new JScrollPane(table);
+=======
+        scrollPane = new JScrollPane(table);
+>>>>>>> parent of 63c94ba... update
 
-        scrollPane.setPreferredSize(new Dimension(850,300));
+        scrollPane.setPreferredSize(new Dimension(1450,250+10*SongURl.size()));
 
         JMenuItem add=new JMenuItem("Add");
 
@@ -229,9 +279,9 @@ class StreamPlayerGUI extends JFrame {
         JMenuItem play=new JMenuItem("Play");
 
         add.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 
                 String n=FileOpener();
 
@@ -240,10 +290,18 @@ class StreamPlayerGUI extends JFrame {
                     playlists.createPlaylist();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
+=======
+                String url =JOptionPane.showInputDialog(this,"Enter the URL of the song");
+                try {
+                    addSong(url);
+                } catch (InvalidDataException | IOException | UnsupportedTagException | SQLException invalidDataException) {
+                    invalidDataException.printStackTrace();
+>>>>>>> parent of 63c94ba... update
                 }
             }
         });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         JScrollPane scrollPane = new JScrollPane(table);
 =======
@@ -268,33 +326,64 @@ class StreamPlayerGUI extends JFrame {
         scrollPane.setPreferredSize(new Dimension(750,300));
 
         table.setComponentPopupMenu(new PopupMenu());
+=======
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    deleteSong();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+
+
+        play.addActionListener(bl);
+
+        popmenu.add(add);
+
+        popmenu.add(delete);
+
+        popmenu.add(play);
+
+        table.setComponentPopupMenu(popmenu);
+>>>>>>> parent of 63c94ba... update
 
         main.add(scrollPane);
 
-        main.add(skipb);
+        main.add(Skipb);
 
-        main.add(play1);
+        main.add(Play);
 
-        main.add(pause);
+        main.add(Pause);
 
-        main.add(skipf);
+        main.add(Skipf);
 
-        main.add(stop);
+        main.add(Delete);
+
+        main.add(Add);
 
         main.add(playSong);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         main.add(justPlay);
 
 >>>>>>> parent of ee638a2... enter correct button to just play song
+=======
+
+
+>>>>>>> parent of 63c94ba... update
         main.setDropTarget(new MyDropTarget(this));
 
         player = new BasicPlayer();
 
         this.setTitle("StreamPlayer by Nhan Vo");//change the name to yours
 
-        this.setSize(900, 450);
+        this.setSize(1500, 350+30*SongURl.size());
 
         this.add(main);
 
@@ -302,104 +391,108 @@ class StreamPlayerGUI extends JFrame {
 
     }
 
+    public String getURL(){
+        String n= SongURl.get(CurrentSelectedRow)[1];
+        return n;
+    }
+
+
     public void DisplayError(String n){
-
         JPanel error=new JPanel();
-
         JOptionPane.showMessageDialog(error,n,"ERROR",JOptionPane.ERROR_MESSAGE);
-
     }
 
     public void addSong(String n) throws InvalidDataException, IOException, UnsupportedTagException, SQLException {
-
         Mp3Song song=new Mp3Song(n);
-
-        if(lib.SongExist(song)){
-
+        if(SongExist(song)){
             DisplayError(song.getTitle()+" already Exists ");
-
         }
         else{
-
             String insert="INSERT INTO `songs`(Title, Genre, Artist, Year, Comment, URL) VALUES (?,?,?,?,?,?)";
-
-            PreparedStatement preparedStatement=lib.MakeSQLStatement(insert);
-
+            PreparedStatement preparedStatement=connection.prepareStatement(insert);
             preparedStatement.setString(1,song.getTitle());
-
             preparedStatement.setString(2,song.getGenres());
-
             preparedStatement.setString(3,song.getArtist());
-
             preparedStatement.setInt(4,song.getReleasedYear());
-
             preparedStatement.setString(5,song.getComment());
-
             preparedStatement.setString(6,song.getURL());
-
             preparedStatement.executeUpdate();
-
-            lib.AddSong(song);
-
+            SongURl.add(new String[]{getLastestSongId(),song.getURL()});
+            newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear()});
         }
+    }
+
+    public String getLastestSongId(){
+        int max;
+        if(isEmpty()){
+            max=0;
+        }
+        else{
+            max= Integer.parseInt(SongURl.get(0)[0]);
+            for(int i=0;i<SongURl.size();i++){
+                int n=Integer.parseInt(SongURl.get(i)[0]);
+                if(n>max){
+                    max=n;
+                }
+            }
+        }
+        return Integer.toString(max+1);
+    }
+
+    public Boolean SongExist(Mp3Song song){
+        for(int i=0;i< SongURl.size();i++){
+            if(song.getURL().equals(SongURl.get(i)[1])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean isEmpty(){
+
+        return (SongURl.size()==0) ? true:false;
 
     }
 
     public Boolean isPlaying(){
-
-        return isPlayingrow == CurrentSelectedRow && isPlaying;
-
+        if(bl.getPlayingRow()==CurrentSelectedRow&& isPlaying==true){
+            return true;
+        }
+        return false;
     }
 
     public void deleteSong() throws SQLException {
-
-        String delete="DELETE FROM songs WHERE SongID=" +lib.getSongid(CurrentSelectedRow);
-
-        if(isPlaying()){
-
-            DisplayError(" Song id: "+lib.getSongid(CurrentSelectedRow)+" is playing \nCannot delete at this time");
-
+        String delete="DELETE FROM songs WHERE SongID=" +SongURl.get(CurrentSelectedRow)[0];
+        if(isPlaying){
+            DisplayError("   Song id: "+SongURl.get(CurrentSelectedRow)[0]+" is playing \nCannot delete at this time");
         }
         else{
-
-            PreparedStatement preparedStatement=lib.MakeSQLStatement(delete);
-
+            PreparedStatement preparedStatement=connection.prepareStatement(delete);
             preparedStatement.executeUpdate();
-
-            lib.RemoveSong(CurrentSelectedRow);
-
+            newTable.removeRow(CurrentSelectedRow);
+            SongURl.remove(CurrentSelectedRow);
+            for(int i=0;i<SongURl.size();i++){
+                System.out.println(SongURl.get(i)[0]);
+            }
             CurrentSelectedRow--;
-
-            isPlayingrow--;
-
         }
-
     }
 
-    public String FileOpener(){
 
-        JFileChooser choosefile=new JFileChooser();
-
-        choosefile.showOpenDialog(null);
-
-        File file=choosefile.getSelectedFile();
-
-        return file.getAbsolutePath();
-
-    }
 
     class ButtonListener implements ActionListener {
 
+        int n;
         @Override
 
         public void actionPerformed(ActionEvent e) {
 
-            String url=lib.getElement(CurrentSelectedRow);
+            String url=getURL();
             //create if, output and url assignment statements for the other two channels
 
             try {
 
-                if(isPause && pl.getPauseRow()==CurrentSelectedRow){
+                if(isPause==true&& pl.getPauseRow()==CurrentSelectedRow){
 
                     player.resume();
 
@@ -407,33 +500,30 @@ class StreamPlayerGUI extends JFrame {
 
                     isPlaying=true;
 
+                    n=CurrentSelectedRow;
+
                 }
 <<<<<<< HEAD
                 else if(!playSong.getText().equals("")){
-
                     String song=playSong.getText();
-
                     try {
-
                         player.open(new File(song));
-
                         player.play();
-
                     } catch (BasicPlayerException basicPlayerException) {
-
                         basicPlayerException.printStackTrace();
-
                     }
-
                     isPause=false;
 
                     isPlaying=true;
 
                 }
+<<<<<<< HEAD
 
 =======
 
 >>>>>>> parent of ee638a2... enter correct button to just play song
+=======
+>>>>>>> parent of 63c94ba... update
                 else{
 
                     player.open(new File(url));
@@ -456,6 +546,7 @@ class StreamPlayerGUI extends JFrame {
 
         }
 
+<<<<<<< HEAD
     }
 
     class PopupMenu extends JPopupMenu{
@@ -534,43 +625,34 @@ class StreamPlayerGUI extends JFrame {
 
             }
 
+=======
+        public int getPlayingRow(){
+            return n;
+>>>>>>> parent of 63c94ba... update
         }
 
     }
 
-    class PauseListener implements ActionListener {
 
+    class PauseListener implements ActionListener {
         int PauseRow;
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
             try{
-
                 PauseRow=CurrentSelectedRow;
-
                 System.out.println(CurrentSelectedRow);
-
                 System.out.println(PauseRow);
-
                 player.pause();
-
                 isPause=true;
-
                 isPlaying=false;
-
             } catch (BasicPlayerException basicPlayerException) {
-
                 basicPlayerException.printStackTrace();
-
             }
-
         }
 
         public int getPauseRow(){
-
             return PauseRow;
-
         }
 
     }
@@ -579,77 +661,34 @@ class StreamPlayerGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            if(CurrentSelectedRow<lib.getSongURLSize()-1){
-
+            if(CurrentSelectedRow<SongURl.size()-1){
                 CurrentSelectedRow+=1;
-
             }
-
-            else{
-
-                CurrentSelectedRow=0;
-
-            }
-
-            isPlayingrow=CurrentSelectedRow;
-
-            String url=lib.getElement(CurrentSelectedRow);
-
+            String url=getURL();
             try {
-
                 player.open(new File(url));
-
                 player.play();
-
-                table.setRowSelectionInterval(CurrentSelectedRow,CurrentSelectedRow);
-
             } catch (BasicPlayerException basicPlayerException) {
-
                 basicPlayerException.printStackTrace();
-
             }
 
         }
-
     }
 
     class SkipBackward implements  ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
             if(CurrentSelectedRow>0){
-
                 CurrentSelectedRow-=1;
-
             }
-
-            else{
-
-                CurrentSelectedRow=lib.getSongURLSize()-1;
-
-            }
-
-            isPlayingrow=CurrentSelectedRow;
-
-            String url=lib.getElement(CurrentSelectedRow);
-
+            String url=getURL();
             try {
-
                 player.open(new File(url));
-
                 player.play();
-
-                table.setRowSelectionInterval(CurrentSelectedRow,CurrentSelectedRow);
-
             } catch (BasicPlayerException basicPlayerException) {
-
                 basicPlayerException.printStackTrace();
-
             }
-
-
 
         }
     }
