@@ -1,5 +1,4 @@
 import javax.swing.*;
-<<<<<<< HEAD
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -100,14 +99,4 @@ public class TreeList extends JPanel {
         }
     }
 
-=======
-import java.util.ArrayList;
-
-public class TreeList extends JFrame {
-    private ArrayList<String> playlists=new ArrayList<>();
-    public TreeList(){
-        this.setVisible(true);
-        
-    }
->>>>>>> parent of 8d16ae2... update change
 }
