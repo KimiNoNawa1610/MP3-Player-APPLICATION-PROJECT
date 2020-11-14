@@ -30,7 +30,11 @@ class StreamPlayerGUI extends JFrame {
 
     private final BasicPlayer player;
 
+<<<<<<< HEAD
     private final PauseListener pl=new PauseListener();
+=======
+    private JButton Play,Pause,Skipf, Skipb, Delete,Add,justPlay;
+>>>>>>> parent of ee638a2... enter correct button to just play song
 
     private final JTable table;
 
@@ -46,9 +50,13 @@ class StreamPlayerGUI extends JFrame {
 
         TreeList listTree=new TreeList();
 
+<<<<<<< HEAD
         JPanel sidePanel=new JPanel();
 
         PlayList playlists=new PlayList();
+=======
+    private JScrollPane scrollPane;
+>>>>>>> parent of ee638a2... enter correct button to just play song
 
         sidePanel.setLayout(new FlowLayout());
 
@@ -121,11 +129,19 @@ class StreamPlayerGUI extends JFrame {
 
         play1.addActionListener(bl);
 
+<<<<<<< HEAD
         pause.addActionListener(pl);
+=======
+        justPlay = new JButton("Play without adding");
+>>>>>>> parent of ee638a2... enter correct button to just play song
 
         SkipFoward sf = new SkipFoward();
 
+<<<<<<< HEAD
         skipf.addActionListener(sf);
+=======
+        playSong = new JTextField("url to play song",15);
+>>>>>>> parent of ee638a2... enter correct button to just play song
 
         SkipBackward sb = new SkipBackward();
 
@@ -191,7 +207,26 @@ class StreamPlayerGUI extends JFrame {
             }
         });
 
+<<<<<<< HEAD
         JScrollPane scrollPane = new JScrollPane(table);
+=======
+        justPlay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String song=playSong.getText();
+                    try {
+                        player.open(new File(song));
+                        player.play();
+                    } catch (BasicPlayerException basicPlayerException) {
+                        basicPlayerException.printStackTrace();
+                    }
+                    isPause=false;
+
+                    isPlaying=true;
+
+                }
+            });
+>>>>>>> parent of ee638a2... enter correct button to just play song
 
         scrollPane.setPreferredSize(new Dimension(750,300));
 
@@ -209,10 +244,13 @@ class StreamPlayerGUI extends JFrame {
 
         main.add(stop);
 
-        main.add(notInData);
-
         main.add(playSong);
 
+<<<<<<< HEAD
+=======
+        main.add(justPlay);
+
+>>>>>>> parent of ee638a2... enter correct button to just play song
         main.setDropTarget(new MyDropTarget(this));
 
         player = new BasicPlayer();
@@ -335,6 +373,7 @@ class StreamPlayerGUI extends JFrame {
                     isPlaying=true;
 
                 }
+<<<<<<< HEAD
                 else if(!playSong.getText().equals("")){
 
                     String song=playSong.getText();
@@ -357,6 +396,9 @@ class StreamPlayerGUI extends JFrame {
 
                 }
 
+=======
+
+>>>>>>> parent of ee638a2... enter correct button to just play song
                 else{
 
                     player.open(new File(url));
