@@ -26,6 +26,8 @@ class StreamPlayerGUI extends JFrame {
 
     private boolean isPlaying;
 
+    private JPanel Librarymenu;
+
     private int isPlayingrow;
 
     private final BasicPlayer player;
@@ -48,9 +50,12 @@ class StreamPlayerGUI extends JFrame {
 
         JPanel main = new JPanel();
 
+<<<<<<< HEAD
         TreeList listTree=new TreeList();
 
 <<<<<<< HEAD
+=======
+>>>>>>> parent of 8d16ae2... update change
         JPanel sidePanel=new JPanel();
 
         PlayList playlists=new PlayList();
@@ -62,9 +67,15 @@ class StreamPlayerGUI extends JFrame {
 
         main.setLayout(new FlowLayout());
 
+<<<<<<< HEAD
         JMenuBar topMenu1=new JMenuBar();
 
         JMenu menu1=new JMenu("File");
+=======
+        //main.add(sidePanel);
+
+        JMenuBar topMenu=new JMenuBar();
+>>>>>>> parent of 8d16ae2... update change
 
         JMenu menu2=new JMenu("Controls");
 
@@ -82,6 +93,7 @@ class StreamPlayerGUI extends JFrame {
 
         JMenuItem mitem4=new JMenuItem("Add New Playlist");
 
+<<<<<<< HEAD
         menu1.add(mitem4);
 
         topMenu1.add(menu1);
@@ -91,8 +103,13 @@ class StreamPlayerGUI extends JFrame {
         //topMenu.add(Box.createHorizontalStrut(800));
 
         this.add(topMenu1, BorderLayout.NORTH);
+=======
+        topMenu.add(menu);
 
-        this.add(listTree, BorderLayout.WEST);
+        topMenu.add(Box.createHorizontalStrut(800));
+>>>>>>> parent of 8d16ae2... update change
+
+        main.add(topMenu);
 
         table=lib.getTable();
 
@@ -193,12 +210,32 @@ class StreamPlayerGUI extends JFrame {
 
         });
 
+<<<<<<< HEAD
         mitem4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
                 listTree.addPlaylist(listName);
                 playlists.setName(listName);
+=======
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        scrollPane.setPreferredSize(new Dimension(850,300));
+
+        JMenuItem add=new JMenuItem("Add");
+
+        JMenuItem delete=new JMenuItem("Delete");
+
+        JMenuItem play=new JMenuItem("Play");
+
+        add.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String n=FileOpener();
+
+>>>>>>> parent of 8d16ae2... update change
                 try {
                     playlists.createPlaylist();
                 } catch (SQLException throwables) {
@@ -255,13 +292,11 @@ class StreamPlayerGUI extends JFrame {
 
         player = new BasicPlayer();
 
-        this.setTitle("StreamPlayer by Nhan and Brandon");//change the name to yours
+        this.setTitle("StreamPlayer by Nhan Vo");//change the name to yours
 
-        this.setSize(850, 450);
+        this.setSize(900, 450);
 
-        //this.add(listTree);
-
-        this.add(main, BorderLayout.CENTER);
+        this.add(main);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

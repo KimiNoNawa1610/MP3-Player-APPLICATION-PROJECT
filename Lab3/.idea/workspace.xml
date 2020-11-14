@@ -95,6 +95,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Driver" />
@@ -127,9 +138,12 @@
       <workItem from="1604449867679" duration="3000" />
       <workItem from="1604626246139" duration="4000" />
       <workItem from="1604691547965" duration="9775000" />
+<<<<<<< HEAD
       <workItem from="1604900414316" duration="5083000" />
       <workItem from="1604944356394" duration="599000" />
       <workItem from="1605197006323" duration="7195000" />
+=======
+>>>>>>> parent of 8d16ae2... update change
     </task>
     <servers />
   </component>
@@ -176,6 +190,7 @@
     <state x="708" y="207" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603255760881" />
 <<<<<<< HEAD
     <state x="885" y="271" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604693692963" />
+<<<<<<< HEAD
     <state width="1751" height="178" key="GridCell.Tab.0.bottom" timestamp="1605204580811">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -200,6 +215,32 @@
     <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603403064034" />
     <state width="1751" height="178" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1605203098837" />
     <state width="1751" height="178" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1605204580811" />
+=======
+    <state width="1877" height="46" key="GridCell.Tab.0.bottom" timestamp="1604701403079">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603403064035" />
+    <state width="1340" height="51" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1603407705603" />
+    <state width="1877" height="46" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604701403079" />
+    <state width="1877" height="46" key="GridCell.Tab.0.center" timestamp="1604701403079">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603403064034" />
+    <state width="1340" height="51" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1603407705603" />
+    <state width="1877" height="46" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604701403079" />
+    <state width="1877" height="46" key="GridCell.Tab.0.left" timestamp="1604701403079">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603403064033" />
+    <state width="1340" height="51" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1603407705603" />
+    <state width="1877" height="46" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604701403079" />
+    <state width="1877" height="46" key="GridCell.Tab.0.right" timestamp="1604701403079">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603403064034" />
+    <state width="1340" height="51" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1603407705603" />
+    <state width="1877" height="46" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604701403079" />
+>>>>>>> parent of 8d16ae2... update change
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1603412943120">
 =======
     <state x="885" y="271" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1603226407299" />
@@ -276,15 +317,24 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="755" y="287" key="refactoring.ChangeSignatureDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604695292319" />
-    <state x="616" y="250" key="run.anything.popup" timestamp="1604904372173">
+    <state x="616" y="250" key="run.anything.popup" timestamp="1603220390258">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+<<<<<<< HEAD
     <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604904372173" />
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1605198534712">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="-1297" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1603406758182" />
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1605198534712" />
+=======
+    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1603220390258" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1604699234578">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1297" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1603406758182" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604699234578" />
+>>>>>>> parent of 8d16ae2... update change
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
