@@ -15,7 +15,7 @@ public class Library{
 
     private final String url="jdbc:mysql://localhost:3306/mp3player";
 
-    private final Connection connection = DriverManager.getConnection(url, user, password);
+    protected final Connection connection = DriverManager.getConnection(url, user, password);
 
     private static ArrayList<String[]> SongURl=new ArrayList<>();
 

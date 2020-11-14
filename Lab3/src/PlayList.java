@@ -1,16 +1,13 @@
 import javax.swing.tree.DefaultMutableTreeNode;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PlayList{
+public class PlayList extends Library{
     private String name;
-    Connection connection;
     public PlayList() throws SQLException {
-         Library lib=new Library();
-         connection=lib.getConnection();
+
     }
 
     public void createPlaylist() throws SQLException {
