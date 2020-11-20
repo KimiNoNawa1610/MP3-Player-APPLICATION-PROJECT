@@ -15,6 +15,7 @@ public class TreeList extends JPanel {
     private ArrayList<String> PlayList;
     private JTree Library;
     private JTree PlaylistTree;
+    private String data;
     public TreeList() throws SQLException {
         PlayList=new PlayList().getPlalistname();
         DefaultMutableTreeNode root=new DefaultMutableTreeNode("Playlist");
@@ -38,11 +39,22 @@ public class TreeList extends JPanel {
         PlaylistTree.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                if(PlaylistTree.getSelectionPath()!=null){
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) PlaylistTree.getLastSelectedPathComponent();
+                //if(PlaylistTree.getSelectionPath()!=null){
+                //}
 
+                if(node == null)return;
+                Object nodeInfo = node.getUserObject();
+                data=nodeInfo.toString();
+                try {
+                    StreamPlayerGUI.getInstance().update(nodeInfo.toString());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
+
             }
         });
+
 
         this.setVisible(true);
         this.add(Library);
@@ -75,6 +87,12 @@ public class TreeList extends JPanel {
             newWindow.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    try {
+                        Popup newwin =new Popup(data);
+                        newwin.setVisible(true);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     // Add new window implementation
                 }
             });

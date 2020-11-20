@@ -7,9 +7,9 @@ public class Driver {
 
     public static void main(String[] args) throws SQLException, InvalidDataException, IOException, UnsupportedTagException {
 
-        StreamPlayerGUI player= new StreamPlayerGUI();
+        StreamPlayerGUI player=StreamPlayerGUI.getInstance();
 
-        player.setVisible(true);
+       player.setVisible(true);
 
     }
 

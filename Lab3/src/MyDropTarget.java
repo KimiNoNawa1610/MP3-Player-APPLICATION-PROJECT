@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
@@ -7,9 +8,9 @@ import java.util.List;
 
 class MyDropTarget extends DropTarget {
 
-    private StreamPlayerGUI gui;
+    private JFrame gui;
 
-    public MyDropTarget(StreamPlayerGUI n){
+    public MyDropTarget(JFrame n){
         gui=n;
     }
 
@@ -26,8 +27,16 @@ class MyDropTarget extends DropTarget {
             for(Object o : result){
 
                 System.out.println(o.toString());
+                if(gui instanceof StreamPlayerGUI) {
+                    StreamPlayerGUI gui2 =(StreamPlayerGUI)gui;
+                    gui2.addSong(o.toString());
+                }
+                if(gui instanceof Popup)
+                {
+                    Popup gui2 =(Popup) gui;
+                    gui2.addSong(o.toString());
 
-                gui.addSong(o.toString());
+                }
 
             }
 

@@ -18,5 +18,9 @@
     <orderEntry type="library" name="mp3agic-0.9.21" level="project" />
     <orderEntry type="library" name="commons-logging-1.2" level="project" />
     <orderEntry type="library" name="basicplayer3.02" level="project" />
+    <orderEntry type="library" name="basicplayer3.03" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.212" level="project" />
+    <orderEntry type="library" name="mp3agic-0.9.22" level="project" />
+    <orderEntry type="library" name="commons-logging-1.21" level="project" />
   </component>
 </module>

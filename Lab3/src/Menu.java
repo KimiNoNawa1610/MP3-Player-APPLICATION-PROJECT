@@ -2,7 +2,9 @@ import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
@@ -32,15 +34,28 @@ class StreamPlayerGUI extends JFrame {
 
     private final PauseListener pl=new PauseListener();
 
-    private final JTable table;
+    private  JTable table;
 
     private final JTextField playSong;
 
     private int CurrentSelectedRow;
 
-    private final Library lib=new Library();
+    private  Library lib=new Library();
 
-    public StreamPlayerGUI() throws SQLException {
+    private static StreamPlayerGUI instance=null;
+
+    private JScrollPane scrollPane;
+
+
+    public static StreamPlayerGUI getInstance() throws SQLException {
+        if(instance == null)
+        {
+            instance =new StreamPlayerGUI();
+        }
+        return instance;
+    }
+
+    private StreamPlayerGUI() throws SQLException {
 
         JPanel main = new JPanel();
 
@@ -575,6 +590,25 @@ class StreamPlayerGUI extends JFrame {
 
 
         }
+    }
+
+    public void update( String database) throws SQLException {
+        table=lib.update(database);
+        table=lib.getTable();
+        String[] Cname={"ID","Tilte","Genre","Artist","Released Year","Comment"};
+        DefaultTableModel data = new DefaultTableModel(Cname, 0);
+        table.setModel( data );
+
+        scrollPane=new JScrollPane(table);
+
+
+
+
+
+        table.setVisible(true);
+        StreamPlayerGUI.getInstance().repaint();
+
+
     }
 
 }

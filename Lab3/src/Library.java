@@ -19,7 +19,7 @@ public class Library{
 
     private static ArrayList<String[]> SongURl=new ArrayList<>();
 
-    private static JTable table;
+    protected  JTable table;
 
     public Library() throws SQLException {
 
@@ -30,6 +30,55 @@ public class Library{
             Statement statement=connection.createStatement();
 
             String columns = "SELECT * FROM songs";
+
+            ResultSet resultSet=statement.executeQuery(columns);
+
+            System.out.println("Retrieveing information from SQL data base...");
+
+            while(resultSet.next()){
+
+                System.out.println("...");
+
+                String iD=resultSet.getString("SongID");
+
+                String title= resultSet.getString("Title");
+
+                String genre=resultSet.getString("Genre");
+
+                String artist=resultSet.getString("Artist");
+
+                String year=resultSet.getString("Year");
+
+                String comment=resultSet.getString("Comment");
+
+                String URl=resultSet.getString("URL");
+
+                newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
+
+                SongURl.add(new String[]{iD, URl});
+
+            }
+
+            System.out.println("Done");
+
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+
+        table=new JTable(newTable);
+    }
+
+    public Library(String input) throws SQLException {
+
+        try {
+
+            System.out.println("Connected to SQL data base");
+
+            Statement statement=connection.createStatement();
+
+            String columns = "SELECT * FROM "+input;
 
             ResultSet resultSet=statement.executeQuery(columns);
 
@@ -178,5 +227,61 @@ public class Library{
 
         return preparedStatement;
     }
+
+    public JTable update(String input)
+    {
+        System.out.println("update");
+
+        try {
+
+            System.out.println("Connected to SQL data base");
+
+            Statement statement=connection.createStatement();
+
+            String columns = "SELECT * FROM "+input;
+
+            ResultSet resultSet=statement.executeQuery(columns);
+
+            System.out.println("Retrieveing information from SQL data base...");
+
+            while(resultSet.next()){
+
+                System.out.println("...");
+
+                String iD=resultSet.getString("SongID");
+
+                String title= resultSet.getString("Title");
+
+                String genre=resultSet.getString("Genre");
+
+                String artist=resultSet.getString("Artist");
+
+                String year=resultSet.getString("Year");
+
+                String comment=resultSet.getString("Comment");
+
+                String URl=resultSet.getString("URL");
+
+                newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
+
+                SongURl.add(new String[]{iD, URl});
+
+            }
+
+            System.out.println("Done");
+
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+
+        table=new JTable(newTable);
+        return table;
+    }
+
+
+
+
 
 }
