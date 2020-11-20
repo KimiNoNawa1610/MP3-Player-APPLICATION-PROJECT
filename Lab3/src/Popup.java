@@ -4,7 +4,6 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /*
 
 Nhan Vo
@@ -21,7 +19,7 @@ Nhan Vo
 CECS 343-project
 
 */
-class StreamPlayerGUI extends JFrame {
+class Popup extends JFrame {
 
     private boolean isPause;
 
@@ -33,28 +31,17 @@ class StreamPlayerGUI extends JFrame {
 
     private final PauseListener pl=new PauseListener();
 
-    private  JTable table;
+    private final JTable table;
 
     private final JTextField playSong;
 
     private int CurrentSelectedRow;
 
-    private  Library lib=Library.getInstance();
+    private PlayList playList;
 
-    private static StreamPlayerGUI instance=null;
+    private Library lib=Library.getInstance();
 
-    private JScrollPane scrollPane;
-
-
-    public static StreamPlayerGUI getInstance() throws SQLException {
-        if(instance == null)
-        {
-            instance =new StreamPlayerGUI();
-        }
-        return instance;
-    }
-
-    private StreamPlayerGUI() throws SQLException {
+    public Popup(String data) throws SQLException {
 
         JPanel main = new JPanel();
 
@@ -62,11 +49,11 @@ class StreamPlayerGUI extends JFrame {
 
         table.setRowHeight(20);
 
-        TreeList listTree=new TreeList();
+        // TreeList listTree=new TreeList();
 
         JPanel sidePanel=new JPanel();
 
-        PlayList playlists=new PlayList();
+        //PlayList playlists=new PlayList();
 
         sidePanel.setLayout(new FlowLayout());
 
@@ -102,7 +89,7 @@ class StreamPlayerGUI extends JFrame {
 
         this.add(topMenu1, BorderLayout.NORTH);
 
-        this.add(listTree, BorderLayout.WEST);
+        // this.add(listTree, BorderLayout.WEST);
 
         TableColumnModel columnModel = table.getColumnModel();
 
@@ -191,20 +178,19 @@ class StreamPlayerGUI extends JFrame {
 
         });
 
-        mitem4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
-                listTree.addPlaylist(listName);
-                playlists.setName(listName);
-                try {
-                    playlists.createPlaylist();
-                    playlists.createTable();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        });
+        //  mitem4.addActionListener(new ActionListener() {
+        //     @Override
+        //    public void actionPerformed(ActionEvent e) {
+        //        String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
+        //        listTree.addPlaylist(listName);
+        //        playlists.setName(listName);
+        //        try {
+        //            playlists.createPlaylist();
+        //        } catch (SQLException throwables) {
+        //            throwables.printStackTrace();
+        //        }
+        //    }
+        //});
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -232,9 +218,9 @@ class StreamPlayerGUI extends JFrame {
 
         player = new BasicPlayer();
 
-        this.setTitle("StreamPlayer by Nhan and Brandon");//change the name to yours
+        this.setTitle("StreamPlayer by Nhan ");//change the name to yours
 
-        this.setSize(850, 450);
+        this.setSize(800, 450);
 
         //this.add(listTree);
 
@@ -256,14 +242,14 @@ class StreamPlayerGUI extends JFrame {
 
         Mp3Song song=new Mp3Song(n);
 
-        if(lib.SongExist(song)){
+        if(playList.SongExist(song)){
 
             DisplayError(song.getTitle()+" already Exists ");
 
         }
         else{
 
-            lib.AddSong(song);
+            playList.AddSong(song);
 
         }
 
@@ -277,14 +263,16 @@ class StreamPlayerGUI extends JFrame {
 
     public void deleteSong() throws SQLException {
 
+        String delete="DELETE FROM songs WHERE SongID=" +playList.getSongid(CurrentSelectedRow);
+
         if(isPlaying()){
 
-            DisplayError(" Song id: "+lib.getSongid(CurrentSelectedRow)+" is playing \nCannot delete at this time");
+            DisplayError(" Song id: "+playList.getSongid(CurrentSelectedRow)+" is playing \nCannot delete at this time");
 
         }
         else{
 
-            lib.RemoveSong(CurrentSelectedRow);
+            playList.RemoveSong(CurrentSelectedRow);
 
             CurrentSelectedRow--;
 
@@ -312,7 +300,7 @@ class StreamPlayerGUI extends JFrame {
 
         public void actionPerformed(ActionEvent e) {
 
-            String url=lib.getElement(CurrentSelectedRow);
+            String url=playList.getElement(CurrentSelectedRow);
             //create if, output and url assignment statements for the other two channels
 
             try {
@@ -494,7 +482,7 @@ class StreamPlayerGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(CurrentSelectedRow<lib.getSongURLSize()-1){
+            if(CurrentSelectedRow<playList.getSongURLSize()-1){
 
                 CurrentSelectedRow+=1;
 
@@ -508,7 +496,7 @@ class StreamPlayerGUI extends JFrame {
 
             isPlayingrow=CurrentSelectedRow;
 
-            String url=lib.getElement(CurrentSelectedRow);
+            String url=playList.getElement(CurrentSelectedRow);
 
             try {
 
@@ -541,13 +529,13 @@ class StreamPlayerGUI extends JFrame {
 
             else{
 
-                CurrentSelectedRow=lib.getSongURLSize()-1;
+                CurrentSelectedRow=playList.getSongURLSize()-1;
 
             }
 
             isPlayingrow=CurrentSelectedRow;
 
-            String url=lib.getElement(CurrentSelectedRow);
+            String url=playList.getElement(CurrentSelectedRow);
 
             try {
 
@@ -566,25 +554,6 @@ class StreamPlayerGUI extends JFrame {
 
 
         }
-    }
-
-    public void update( String database) throws SQLException {
-        table=lib.update(database);
-        table=lib.getTable();
-        String[] Cname={"ID","Tilte","Genre","Artist","Released Year","Comment"};
-        DefaultTableModel data = new DefaultTableModel(Cname, 0);
-        table.setModel( data );
-
-        scrollPane=new JScrollPane(table);
-
-
-
-
-
-        table.setVisible(true);
-        StreamPlayerGUI.getInstance().repaint();
-
-
     }
 
 }

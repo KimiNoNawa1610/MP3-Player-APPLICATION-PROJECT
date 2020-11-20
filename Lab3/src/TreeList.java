@@ -22,7 +22,7 @@ public class TreeList extends JPanel {
         DefaultMutableTreeNode lib=new DefaultMutableTreeNode("Library");
         innerMenu menu=new innerMenu(PlaylistTree);
         root.add(new DefaultMutableTreeNode("Empty"));
-        for(int i=0;i<PlayList.size()-1;i++){
+        for(int i=0;i<PlayList.size()-2;i++){
             root.add(new DefaultMutableTreeNode(PlayList.get(i)));
         }
         Library=new JTree(lib);

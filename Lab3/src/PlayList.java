@@ -1,12 +1,39 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PlayList extends Library{
+public class PlayList extends DB {
     private String name;
+    private DefaultTableModel newTable=new DefaultTableModel(Cname,0);
+    private JTable table;
     public PlayList() throws SQLException {
+
+    }
+
+    @Override
+    public void AddSong(Mp3Song song) throws SQLException {
+
+        addsongtoDB(song,name);
+
+        SongURl.add(new String[]{getLastestSongId(),song.getURL()});
+
+        newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],
+
+                song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear(), song.getComment()});
+    }
+
+    @Override
+    public void RemoveSong(int n) throws SQLException {
+
+        removesongfromDB(n, name);
+
+        newTable.removeRow(n);
+
+        SongURl.remove(n);
 
     }
 
@@ -25,6 +52,61 @@ public class PlayList extends Library{
         System.out.println("Creating new playlist");
         System.out.println("New playlist created \n");
         statement.close();
+    }
+
+    public JTable getTable(){
+        return table;
+    }
+
+    public void createTable() throws SQLException {
+
+        try {
+
+            System.out.println("Connected to SQL data base");
+
+            Statement statement=connection.createStatement();
+
+            String columns = "SELECT * FROM "+name;
+
+            ResultSet resultSet=statement.executeQuery(columns);
+
+            System.out.println("Retrieveing information from SQL data base...");
+
+            while(resultSet.next()){
+
+                System.out.println("...");
+
+                String iD=resultSet.getString("SongID");
+
+                String title= resultSet.getString("Title");
+
+                String genre=resultSet.getString("Genre");
+
+                String artist=resultSet.getString("Artist");
+
+                String year=resultSet.getString("Year");
+
+                String comment=resultSet.getString("Comment");
+
+                String URl=resultSet.getString("URL");
+
+                newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
+
+                SongURl.add(new String[]{iD, URl});
+
+            }
+
+            CurrentMax=Integer.parseInt(SongURl.get(SongURl.size()-1)[0]);
+
+            System.out.println("Done");
+
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+
+        table=new JTable(newTable);
     }
 
     public void deletePlaylist(DefaultMutableTreeNode name) throws SQLException {
