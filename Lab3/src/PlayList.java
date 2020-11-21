@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,11 +53,7 @@ public class PlayList extends DB {
         statement.close();
     }
 
-    public JTable getTable(){
-        return table;
-    }
-
-    public void createTable() throws SQLException {
+    public JTable getTable() throws SQLException {
 
         try {
 
@@ -95,8 +90,9 @@ public class PlayList extends DB {
                 SongURl.add(new String[]{iD, URl});
 
             }
-
-            CurrentMax=Integer.parseInt(SongURl.get(SongURl.size()-1)[0]);
+            if(!SongURl.isEmpty()) {
+                CurrentMax = Integer.parseInt(SongURl.get(SongURl.size() - 1)[0]);
+            }
 
             System.out.println("Done");
 
@@ -105,11 +101,17 @@ public class PlayList extends DB {
             throwables.printStackTrace();
 
         }
-
         table=new JTable(newTable);
+
+        return table;
+
     }
 
-    public void deletePlaylist(DefaultMutableTreeNode name) throws SQLException {
+    public void setTableVisibility(){
+        table.setVisible(true);
+    }
+
+    public void deletePlaylist(String name) throws SQLException {
         Statement statement=connection.createStatement();
         String delete="DROP TABLE "+name;
         statement.executeUpdate(delete);

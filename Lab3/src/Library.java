@@ -62,7 +62,9 @@ public class Library extends DB {
 
             }
 
-            CurrentMax=Integer.parseInt(SongURl.get(SongURl.size()-1)[0]);
+            if(!SongURl.isEmpty()) {
+                CurrentMax = Integer.parseInt(SongURl.get(SongURl.size() - 1)[0]);
+            }
 
             System.out.println("Done");
 
@@ -80,6 +82,10 @@ public class Library extends DB {
 
         return table;
 
+    }
+
+    public DefaultTableModel getNewTable(){
+        return newTable;
     }
 
     public void RemoveSong(int n) throws SQLException {
@@ -103,62 +109,5 @@ public class Library extends DB {
                 song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear(), song.getComment()});
 
     }
-
-
-    public JTable update(String input)
-    {
-        System.out.println("update");
-
-        try {
-
-            System.out.println("Connected to SQL data base");
-
-            Statement statement=connection.createStatement();
-
-            String columns = "SELECT * FROM "+input;
-
-            ResultSet resultSet=statement.executeQuery(columns);
-
-            System.out.println("Retrieveing information from SQL data base...");
-
-            while(resultSet.next()){
-
-                System.out.println("...");
-
-                String iD=resultSet.getString("SongID");
-
-                String title= resultSet.getString("Title");
-
-                String genre=resultSet.getString("Genre");
-
-                String artist=resultSet.getString("Artist");
-
-                String year=resultSet.getString("Year");
-
-                String comment=resultSet.getString("Comment");
-
-                String URl=resultSet.getString("URL");
-
-                newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
-
-                SongURl.add(new String[]{iD, URl});
-
-            }
-
-            System.out.println("Done");
-
-        } catch (SQLException throwables) {
-
-            throwables.printStackTrace();
-
-        }
-
-        table=new JTable(newTable);
-        return table;
-    }
-
-
-
-
 
 }

@@ -71,7 +71,11 @@ abstract class DB {
 
     public String getLastestSongId(){
 
-        if(CurrentMax==0){
+        if(SongURl.isEmpty()){
+            CurrentMax=0;
+        }
+
+        else if(CurrentMax==0 && !SongURl.isEmpty()){
             CurrentMax=Integer.parseInt(SongURl.get(SongURl.size()-1)[0]);
         }
 

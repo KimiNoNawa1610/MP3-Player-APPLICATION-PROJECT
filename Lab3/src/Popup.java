@@ -226,8 +226,6 @@ class Popup extends JFrame {
 
         this.add(main, BorderLayout.CENTER);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     public void DisplayError(String n){

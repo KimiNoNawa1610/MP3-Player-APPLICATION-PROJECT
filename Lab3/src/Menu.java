@@ -4,6 +4,8 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
@@ -41,6 +43,8 @@ class StreamPlayerGUI extends JFrame {
 
     private  Library lib=Library.getInstance();
 
+    private PlayList playList=new PlayList();
+
     private static StreamPlayerGUI instance=null;
 
     private JScrollPane scrollPane;
@@ -63,6 +67,8 @@ class StreamPlayerGUI extends JFrame {
         table.setRowHeight(20);
 
         TreeList listTree=new TreeList();
+
+        listTree.addListener(new TreeSelect());
 
         JPanel sidePanel=new JPanel();
 
@@ -199,7 +205,6 @@ class StreamPlayerGUI extends JFrame {
                 playlists.setName(listName);
                 try {
                     playlists.createPlaylist();
-                    playlists.createTable();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -568,23 +573,29 @@ class StreamPlayerGUI extends JFrame {
         }
     }
 
-    public void update( String database) throws SQLException {
-        table=lib.update(database);
-        table=lib.getTable();
-        String[] Cname={"ID","Tilte","Genre","Artist","Released Year","Comment"};
-        DefaultTableModel data = new DefaultTableModel(Cname, 0);
-        table.setModel( data );
+    public class TreeSelect implements TreeSelectionListener {
+        DefaultTableModel model=lib.getNewTable();
 
-        scrollPane=new JScrollPane(table);
+        public TreeSelect() throws SQLException {
+            super();
+        }
+        @Override
+        public void valueChanged(TreeSelectionEvent e) {
+            if(e.getNewLeadSelectionPath()!=null){
+                String path= e.getNewLeadSelectionPath().getLastPathComponent().toString();
+                playList.setName(path);
+                model.setRowCount(0);
+                try {
+                    model= (DefaultTableModel) playList.getTable().getModel();
+                    table.setModel(model);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
 
-
-
-
-
-        table.setVisible(true);
-        StreamPlayerGUI.getInstance().repaint();
-
+            }
+        }
 
     }
+
 
 }

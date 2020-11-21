@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -21,8 +20,7 @@ public class TreeList extends JPanel {
         DefaultMutableTreeNode root=new DefaultMutableTreeNode("Playlist");
         DefaultMutableTreeNode lib=new DefaultMutableTreeNode("Library");
         innerMenu menu=new innerMenu(PlaylistTree);
-        root.add(new DefaultMutableTreeNode("Empty"));
-        for(int i=0;i<PlayList.size()-2;i++){
+        for(int i=0;i<PlayList.size();i++){
             root.add(new DefaultMutableTreeNode(PlayList.get(i)));
         }
         Library=new JTree(lib);
@@ -35,27 +33,6 @@ public class TreeList extends JPanel {
                 }
             }
         });
-
-        PlaylistTree.addTreeSelectionListener(new TreeSelectionListener() {
-            @Override
-            public void valueChanged(TreeSelectionEvent e) {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) PlaylistTree.getLastSelectedPathComponent();
-                //if(PlaylistTree.getSelectionPath()!=null){
-                //}
-
-                if(node == null)return;
-                Object nodeInfo = node.getUserObject();
-                data=nodeInfo.toString();
-                try {
-                    StreamPlayerGUI.getInstance().update(nodeInfo.toString());
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-
-            }
-        });
-
-
         this.setVisible(true);
         this.add(Library);
         this.add(PlaylistTree);
@@ -63,6 +40,10 @@ public class TreeList extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createRigidArea(new Dimension(20,0)));
 
+    }
+
+    public void addListener(TreeSelectionListener ls){
+        PlaylistTree.addTreeSelectionListener(ls);
     }
 
     public void addPlaylist(String n){
@@ -101,7 +82,7 @@ public class TreeList extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        DefaultMutableTreeNode CurrentNode= (DefaultMutableTreeNode) PlaylistTree.getSelectionPath().getLastPathComponent();
+                        String CurrentNode= PlaylistTree.getSelectionPath().getLastPathComponent().toString();
                         PlayList Plist=new PlayList();
                         removePlaylist();
                         Plist.deletePlaylist(CurrentNode);
@@ -116,5 +97,10 @@ public class TreeList extends JPanel {
             this.add(removePlaylist);
         }
     }
+
+    public JTree getPlaylistTree(){
+        return PlaylistTree;
+    }
+
 
 }
