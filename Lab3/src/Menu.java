@@ -4,6 +4,8 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -41,6 +43,8 @@ class StreamPlayerGUI extends JFrame {
 
     private int CurrentSelectedRow;
 
+    private float Sound;
+
     private  Library lib=Library.getInstance();
 
     private PlayList playList=new PlayList();
@@ -49,6 +53,7 @@ class StreamPlayerGUI extends JFrame {
 
     private JScrollPane scrollPane;
 
+    private static JSlider volumeAdjustment;
 
     public static StreamPlayerGUI getInstance() throws SQLException {
         if(instance == null)
@@ -62,13 +67,37 @@ class StreamPlayerGUI extends JFrame {
 
         JPanel main = new JPanel();
 
+        JPanel controller=new JPanel();
+
+        controller.setSize(new Dimension(400,30));
+
+        volumeAdjustment=new JSlider();
+
+        volumeAdjustment.setMinimum(0);
+
+        volumeAdjustment.setMaximum(100);
+
+        volumeAdjustment.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                float volume=volumeAdjustment.getValue();
+                volume=volume/80;
+                System.out.println(volume);
+                try {
+                    player.setGain(volume);
+                } catch (BasicPlayerException basicPlayerException) {
+                    basicPlayerException.printStackTrace();
+                }
+            }
+        });
+
         table=lib.getTable();
 
         table.setRowHeight(20);
 
         TreeList listTree=new TreeList();
 
-        listTree.addListener(new TreeSelect());
+        listTree.addPlayListListener(new TreePlaylistSelect());
 
         JPanel sidePanel=new JPanel();
 
@@ -133,7 +162,7 @@ class StreamPlayerGUI extends JFrame {
 
         JButton stop = new JButton("Stop");
 
-        JLabel notInData = new JLabel("enter the url to just play song");
+        JLabel notInData = new JLabel("enter the url to play");
 
         playSong = new JTextField("",15);
 
@@ -219,19 +248,21 @@ class StreamPlayerGUI extends JFrame {
 
         main.add(scrollPane);
 
-        main.add(skipb);
+        controller.add(skipb);
 
-        main.add(play1);
+        controller.add(play1);
 
-        main.add(pause);
+        controller.add(pause);
 
-        main.add(skipf);
+        controller.add(skipf);
 
-        main.add(stop);
+        controller.add(stop);
 
-        main.add(notInData);
+        controller.add(volumeAdjustment);
 
-        main.add(playSong);
+        controller.add(notInData);
+
+        controller.add(playSong);
 
         main.setDropTarget(new MyDropTarget(this));
 
@@ -244,6 +275,8 @@ class StreamPlayerGUI extends JFrame {
         //this.add(listTree);
 
         this.add(main, BorderLayout.CENTER);
+
+        this.add(controller, BorderLayout.SOUTH);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -573,15 +606,15 @@ class StreamPlayerGUI extends JFrame {
         }
     }
 
-    public class TreeSelect implements TreeSelectionListener {
-        DefaultTableModel model=lib.getNewTable();
+    public class TreePlaylistSelect implements TreeSelectionListener {
+        DefaultTableModel model= lib.getNewTable();
 
-        public TreeSelect() throws SQLException {
+        public TreePlaylistSelect() throws SQLException {
             super();
         }
         @Override
         public void valueChanged(TreeSelectionEvent e) {
-            if(e.getNewLeadSelectionPath()!=null){
+            if(e.getNewLeadSelectionPath()!=null&&!e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")){
                 String path= e.getNewLeadSelectionPath().getLastPathComponent().toString();
                 playList.setName(path);
                 model.setRowCount(0);
@@ -593,9 +626,17 @@ class StreamPlayerGUI extends JFrame {
                 }
 
             }
+            else if(e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")){
+                model.setRowCount(0);
+                model= (DefaultTableModel) lib.getTable().getModel();
+                table.setModel(model);
+            }
+
         }
 
     }
+
+
 
 
 }

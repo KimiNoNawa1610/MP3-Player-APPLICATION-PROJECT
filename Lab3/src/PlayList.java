@@ -16,8 +16,6 @@ public class PlayList extends DB {
     @Override
     public void AddSong(Mp3Song song) throws SQLException {
 
-        addsongtoDB(song,name);
-
         SongURl.add(new String[]{getLastestSongId(),song.getURL()});
 
         newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],
@@ -40,13 +38,7 @@ public class PlayList extends DB {
         Statement statement=connection.createStatement();
         String newtable="CREATE TABLE "+name+"(" +
                 "SongID INTEGER not NULL, "+
-                "Title VARCHAR(250), "+
-                "Genre VARCHAR(250), "+
-                "Artist VARCHAR(250), "+
-                "Year INTEGER, "+
-                "Comment VARCHAR(350), "+
-                "URL VARCHAR(250) "+
-                ");";
+                "FOREIGN KEY (SongID) REFERENCES Songs(SongID));";
         statement.executeUpdate(newtable);
         System.out.println("Creating new playlist");
         System.out.println("New playlist created \n");
@@ -61,7 +53,7 @@ public class PlayList extends DB {
 
             Statement statement=connection.createStatement();
 
-            String columns = "SELECT * FROM "+name;
+            String columns = "SELECT * FROM Songs INNER JOIN "+name+" ON "+name+".SongID = "+"Songs.SongID";
 
             ResultSet resultSet=statement.executeQuery(columns);
 
@@ -107,10 +99,6 @@ public class PlayList extends DB {
 
     }
 
-    public void setTableVisibility(){
-        table.setVisible(true);
-    }
-
     public void deletePlaylist(String name) throws SQLException {
         Statement statement=connection.createStatement();
         String delete="DROP TABLE "+name;
@@ -129,10 +117,14 @@ public class PlayList extends DB {
         Statement statement=connection.createStatement();
         ResultSet resultset= statement.executeQuery("SHOW TABLES");
         while(resultset.next()){
-            names.add(resultset.getString(1));
+            if(!resultset.getString(1).equals("songs")) {
+                names.add(resultset.getString(1));
+            }
         }
         return names;
     }
+
+
 
 
 }

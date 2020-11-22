@@ -22,8 +22,9 @@ public class Library extends DB {
 
     }
 
-    private Library() throws SQLException {
+    private Library() throws SQLException {}
 
+    public JTable getTable(){
         try {
 
             System.out.println("Connected to SQL data base");
@@ -76,16 +77,9 @@ public class Library extends DB {
         }
 
         table=new JTable(newTable);
-    }
-
-    public JTable getTable(){
 
         return table;
 
-    }
-
-    public DefaultTableModel getNewTable(){
-        return newTable;
     }
 
     public void RemoveSong(int n) throws SQLException {
@@ -108,6 +102,10 @@ public class Library extends DB {
 
                 song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear(), song.getComment()});
 
+    }
+
+    public DefaultTableModel getNewTable(){
+        return newTable;
     }
 
 }

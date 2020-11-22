@@ -12,19 +12,22 @@ import java.util.ArrayList;
 
 public class TreeList extends JPanel {
     private ArrayList<String> PlayList;
-    private JTree Library;
     private JTree PlaylistTree;
     private String data;
     public TreeList() throws SQLException {
         PlayList=new PlayList().getPlalistname();
-        DefaultMutableTreeNode root=new DefaultMutableTreeNode("Playlist");
-        DefaultMutableTreeNode lib=new DefaultMutableTreeNode("Library");
+        DefaultMutableTreeNode root=new DefaultMutableTreeNode();
+        DefaultMutableTreeNode list=new DefaultMutableTreeNode("PlayList",true);
+        DefaultMutableTreeNode lib=new DefaultMutableTreeNode("Library", false);
         innerMenu menu=new innerMenu(PlaylistTree);
+        root.add(lib);
+        root.add(list);
         for(int i=0;i<PlayList.size();i++){
-            root.add(new DefaultMutableTreeNode(PlayList.get(i)));
+            list.add(new DefaultMutableTreeNode(PlayList.get(i)));
         }
-        Library=new JTree(lib);
         PlaylistTree =new JTree(root);
+        PlaylistTree.setRootVisible(false);
+        PlaylistTree.expandRow(1);
         PlaylistTree.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -34,7 +37,6 @@ public class TreeList extends JPanel {
             }
         });
         this.setVisible(true);
-        this.add(Library);
         this.add(PlaylistTree);
         this.setSize(new Dimension(80,400));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -42,7 +44,7 @@ public class TreeList extends JPanel {
 
     }
 
-    public void addListener(TreeSelectionListener ls){
+    public void addPlayListListener(TreeSelectionListener ls){
         PlaylistTree.addTreeSelectionListener(ls);
     }
 
