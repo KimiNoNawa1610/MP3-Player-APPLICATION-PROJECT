@@ -55,6 +55,8 @@ class StreamPlayerGUI extends JFrame {
 
     private static JSlider volumeAdjustment;
 
+    private static String currentTable="Library";
+
     public static StreamPlayerGUI getInstance() throws SQLException {
         if(instance == null)
         {
@@ -344,13 +346,23 @@ class StreamPlayerGUI extends JFrame {
 
     }
 
+    public String getURL(){
+        String url="";
+        if(currentTable.equals("Library")){
+            url=lib.getElement(CurrentSelectedRow);
+        }
+        else{
+            url=playList.getElement(CurrentSelectedRow);
+        }
+        return url;
+    }
+
     class ButtonListener implements ActionListener {
 
         @Override
 
         public void actionPerformed(ActionEvent e) {
 
-            String url=lib.getElement(CurrentSelectedRow);
             //create if, output and url assignment statements for the other two channels
 
             try {
@@ -388,7 +400,7 @@ class StreamPlayerGUI extends JFrame {
 
                 else{
 
-                    player.open(new File(url));
+                    player.open(new File(getURL()));
 
                     player.play();
 
@@ -546,11 +558,9 @@ class StreamPlayerGUI extends JFrame {
 
             isPlayingrow=CurrentSelectedRow;
 
-            String url=lib.getElement(CurrentSelectedRow);
-
             try {
 
-                player.open(new File(url));
+                player.open(new File(getURL()));
 
                 player.play();
 
@@ -585,11 +595,9 @@ class StreamPlayerGUI extends JFrame {
 
             isPlayingrow=CurrentSelectedRow;
 
-            String url=lib.getElement(CurrentSelectedRow);
-
             try {
 
-                player.open(new File(url));
+                player.open(new File(getURL()));
 
                 player.play();
 
@@ -621,6 +629,7 @@ class StreamPlayerGUI extends JFrame {
                 try {
                     model= (DefaultTableModel) playList.getTable().getModel();
                     table.setModel(model);
+                    currentTable=path;
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -630,13 +639,11 @@ class StreamPlayerGUI extends JFrame {
                 model.setRowCount(0);
                 model= (DefaultTableModel) lib.getTable().getModel();
                 table.setModel(model);
+                currentTable="Library";
             }
 
         }
 
     }
-
-
-
 
 }
