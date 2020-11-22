@@ -33,6 +33,8 @@ class StreamPlayerGUI extends JFrame {
 
     private int isPlayingrow;
 
+    private TreeList listTree=new TreeList();
+
     private final BasicPlayer player;
 
     private final PauseListener pl=new PauseListener();
@@ -96,8 +98,6 @@ class StreamPlayerGUI extends JFrame {
         table=lib.getTable();
 
         table.setRowHeight(20);
-
-        TreeList listTree=new TreeList();
 
         listTree.addPlayListListener(new TreePlaylistSelect());
 
@@ -630,6 +630,7 @@ class StreamPlayerGUI extends JFrame {
                     model= (DefaultTableModel) playList.getTable().getModel();
                     table.setModel(model);
                     currentTable=path;
+                    listTree.setData(path);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

@@ -44,6 +44,10 @@ public class TreeList extends JPanel {
 
     }
 
+    public void setData(String d){
+        data=d;
+    }
+
     public void addPlayListListener(TreeSelectionListener ls){
         PlaylistTree.addTreeSelectionListener(ls);
     }

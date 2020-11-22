@@ -37,23 +37,21 @@ class Popup extends JFrame {
 
     private int CurrentSelectedRow;
 
-    private PlayList playList;
-
-    private Library lib=Library.getInstance();
+    private PlayList playList=new PlayList();
 
     public Popup(String data) throws SQLException {
 
         JPanel main = new JPanel();
 
-        table=lib.getTable();
+        playList.setName(data);
+
+        System.out.println(data);
+
+        table=playList.getTable();
 
         table.setRowHeight(20);
 
-        // TreeList listTree=new TreeList();
-
         JPanel sidePanel=new JPanel();
-
-        //PlayList playlists=new PlayList();
 
         sidePanel.setLayout(new FlowLayout());
 
@@ -88,6 +86,20 @@ class Popup extends JFrame {
         //topMenu.add(Box.createHorizontalStrut(800));
 
         this.add(topMenu1, BorderLayout.NORTH);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                try {
+                    player.stop();
+                } catch (BasicPlayerException basicPlayerException) {
+                    basicPlayerException.printStackTrace();
+                }
+            }
+        });
+
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // this.add(listTree, BorderLayout.WEST);
 
@@ -218,7 +230,7 @@ class Popup extends JFrame {
 
         player = new BasicPlayer();
 
-        this.setTitle("StreamPlayer by Nhan ");//change the name to yours
+        this.setTitle(data+" Playlist");//change the name to yours
 
         this.setSize(800, 450);
 
@@ -548,8 +560,6 @@ class Popup extends JFrame {
                 basicPlayerException.printStackTrace();
 
             }
-
-
 
         }
     }
