@@ -10,23 +10,60 @@ public class PlayList extends DB {
     private DefaultTableModel newTable=new DefaultTableModel(Cname,0);
     private JTable table;
     public PlayList() throws SQLException {
-
+    //default constructor
     }
 
     @Override
     public void AddSong(Mp3Song song) throws SQLException {
 
-        SongURl.add(new String[]{getLastestSongId(),song.getURL()});
+        Statement statement=connection.createStatement();
+
+        System.out.println(song.getTitle());
+
+        String getid="SELECT SongID FROM `songs` WHERE Title ='"+song.getTitle()+"'";
+
+        ResultSet resultSet=statement.executeQuery(getid);
+
+        String iD="";
+
+        while(resultSet.next()){
+
+            iD=resultSet.getString("SongID");
+
+        }
+
+        if(iD==""){
+
+            addsongtoDB(song);
+
+            resultSet=statement.executeQuery(getid);
+
+            while(resultSet.next()){
+
+                iD=resultSet.getString("SongID");
+
+            }
+
+        }
+
+        String insert="INSERT INTO `"+name+"` (`SongID`) VAlUES ("+iD+");";
+
+        System.out.println(insert);
+
+        statement.executeUpdate(insert);
+
+        SongURl.add(new String[]{iD,song.getURL()});
 
         newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],
 
                 song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear(), song.getComment()});
+
     }
 
     @Override
     public void RemoveSong(int n) throws SQLException {
 
-        removesongfromDB(n, name);
+        removesongfromDB(n,name);
 
         newTable.removeRow(n);
 

@@ -28,6 +28,7 @@ class MyDropTarget extends DropTarget {
 
                 System.out.println(o.toString());
                 if(gui instanceof StreamPlayerGUI) {
+                    System.out.println();
                     StreamPlayerGUI gui2 =(StreamPlayerGUI)gui;
                     gui2.addSong(o.toString());
                 }

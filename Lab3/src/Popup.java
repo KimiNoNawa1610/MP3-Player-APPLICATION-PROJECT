@@ -71,7 +71,7 @@ class Popup extends JFrame {
 
         menu2.add(mitem1);
 
-        JMenuItem mitem2=new JMenuItem("Add File to Library");
+        JMenuItem mitem2=new JMenuItem("Add Song to playlist");
 
         menu1.add(mitem2);
 

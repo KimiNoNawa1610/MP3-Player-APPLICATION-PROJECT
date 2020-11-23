@@ -274,16 +274,26 @@ class StreamPlayerGUI extends JFrame {
 
         Mp3Song song=new Mp3Song(n);
 
-        if(lib.SongExist(song)){
+        if(currentTable.equals("Library")){
+            if(lib.SongExist(song)&&playList.SongExist(song)){
 
-            DisplayError(song.getTitle()+" already Exists ");
+                DisplayError(song.getTitle()+" already Exists ");
 
+            }
+            lib.AddSong(song);
         }
         else{
+            if(playList.SongExist(song)){
 
-            lib.AddSong(song);
+                DisplayError(song.getTitle()+" already Exists ");
 
+            }
+            playList.AddSong(song);
         }
+
+
+
+
 
     }
 
@@ -302,7 +312,12 @@ class StreamPlayerGUI extends JFrame {
         }
         else{
 
-            lib.RemoveSong(CurrentSelectedRow);
+            if(currentTable.equals("Library")){
+                lib.RemoveSong(CurrentSelectedRow);
+            }
+            else{
+                playList.RemoveSong(CurrentSelectedRow);
+            }
 
             CurrentSelectedRow--;
 

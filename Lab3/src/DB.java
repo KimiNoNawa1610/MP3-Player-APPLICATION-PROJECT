@@ -31,8 +31,8 @@ abstract class DB {
 
     }
 
-    protected void addsongtoDB(Mp3Song song, String name) throws SQLException {
-        String insert="INSERT INTO "+name+" (Title, Genre, Artist, Year, Comment, URL) VALUES (?,?,?,?,?,?)";
+    protected void addsongtoDB(Mp3Song song) throws SQLException {
+        String insert="INSERT INTO songs (Title, Genre, Artist, Year, Comment, URL) VALUES (?,?,?,?,?,?)";
 
         PreparedStatement preparedStatement=MakeSQLStatement(insert);
 
@@ -58,7 +58,6 @@ abstract class DB {
 
     protected void removesongfromDB(int n, String name) throws SQLException {
         String delete="DELETE FROM "+name+" WHERE SongID=" +getSongid(n);
-        System.out.println(CurrentMax);
         PreparedStatement preparedStatement=MakeSQLStatement(delete);
         preparedStatement.executeUpdate();
     }

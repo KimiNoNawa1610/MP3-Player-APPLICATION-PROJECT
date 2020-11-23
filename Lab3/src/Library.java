@@ -94,7 +94,7 @@ public class Library extends DB {
 
     public void AddSong(Mp3Song song) throws SQLException {
 
-        addsongtoDB(song,"songs");
+        addsongtoDB(song);
 
         SongURl.add(new String[]{getLastestSongId(),song.getURL()});
 
