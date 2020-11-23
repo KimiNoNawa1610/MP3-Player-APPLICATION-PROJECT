@@ -67,6 +67,8 @@ class StreamPlayerGUI extends JFrame {
 
     private StreamPlayerGUI() throws SQLException {
 
+        PopupMenu pop=new PopupMenu();
+
         JPanel main = new JPanel();
 
         JPanel controller=new JPanel();
@@ -82,8 +84,6 @@ class StreamPlayerGUI extends JFrame {
         listTree.addPlayListListener(new TreePlaylistSelect());
 
         JPanel sidePanel=new JPanel();
-
-        PlayList playlists=new PlayList();
 
         sidePanel.setLayout(new FlowLayout());
 
@@ -213,9 +213,18 @@ class StreamPlayerGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
                 listTree.addPlaylist(listName);
-                playlists.setName(listName);
+                playList.setName(listName);
+                JMenuItem n=new JMenuItem(listName);
+                n.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String n=lib.getElement(CurrentSelectedRow);
+
+                    }
+                });
+                pop.addSubmenu(n);
                 try {
-                    playlists.createPlaylist();
+                    playList.createPlaylist();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -226,7 +235,7 @@ class StreamPlayerGUI extends JFrame {
 
         scrollPane.setPreferredSize(new Dimension(750,300));
 
-        table.setComponentPopupMenu(new PopupMenu());
+        table.setComponentPopupMenu(pop);
 
         main.add(scrollPane);
 
@@ -288,7 +297,9 @@ class StreamPlayerGUI extends JFrame {
                 DisplayError(song.getTitle()+" already Exists ");
 
             }
+
             playList.AddSong(song);
+
         }
 
 
@@ -416,18 +427,36 @@ class StreamPlayerGUI extends JFrame {
     }
 
     class PopupMenu extends JPopupMenu{
+
+        JMenu submenu=new JMenu("Add song to playlist");
         public PopupMenu() throws SQLException {
 
             setPopupSize(150,100);
 
             JMenuItem add=new JMenuItem("Add song to library");
 
-            JMenu submenu=new JMenu("Add song to playlist");
-
             for(int i=0;i<playList.getPlalistname().size();i++){
-
-                submenu.add(new JMenuItem(playList.getPlalistname().get(i)));
-
+                String n=playList.getPlalistname().get(i);
+                JMenuItem itemN=new JMenuItem(n);
+                submenu.add(itemN);
+                itemN.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        playList.setName(n);
+                        String n=lib.getElement(CurrentSelectedRow);
+                        try {
+                            playList.AddSong(new Mp3Song(n));
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        } catch (InvalidDataException invalidDataException) {
+                            invalidDataException.printStackTrace();
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        } catch (UnsupportedTagException unsupportedTagException) {
+                            unsupportedTagException.printStackTrace();
+                        }
+                    }
+                });
             }
 
             JMenuItem delete=new JMenuItem("Delete selected song");
@@ -484,6 +513,11 @@ class StreamPlayerGUI extends JFrame {
             this.add(play);
 
         }
+
+        public void addSubmenu(JMenuItem item){
+            submenu.add(item);
+        }
+
     }
 
     class StopListener implements ActionListener{

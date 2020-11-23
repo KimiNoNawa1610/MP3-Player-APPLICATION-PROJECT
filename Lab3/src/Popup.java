@@ -43,6 +43,8 @@ class Popup extends JFrame {
 
     public Popup(String data) throws SQLException {
 
+        JPanel controller=new JPanel();
+
         volumeAdjustment=new VolumeControl(player);
 
         JPanel main = new JPanel();
@@ -216,19 +218,21 @@ class Popup extends JFrame {
 
         main.add(scrollPane);
 
-        main.add(skipb);
+        controller.add(skipb);
 
-        main.add(play1);
+        controller.add(play1);
 
-        main.add(pause);
+        controller.add(pause);
 
-        main.add(skipf);
+        controller.add(skipf);
 
-        main.add(stop);
+        controller.add(stop);
 
-        main.add(notInData);
+        controller.add(volumeAdjustment);
 
-        main.add(playSong);
+        controller.add(notInData);
+
+        controller.add(playSong);
 
         main.setDropTarget(new MyDropTarget(this));
 
