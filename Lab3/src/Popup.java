@@ -27,7 +27,7 @@ class Popup extends JFrame {
 
     private int isPlayingrow;
 
-    private final BasicPlayer player;
+    private final BasicPlayer player=new BasicPlayer();
 
     private final PauseListener pl=new PauseListener();
 
@@ -35,11 +35,15 @@ class Popup extends JFrame {
 
     private final JTextField playSong;
 
+    private JSlider volumeAdjustment;
+
     private int CurrentSelectedRow;
 
     private PlayList playList=new PlayList();
 
     public Popup(String data) throws SQLException {
+
+        volumeAdjustment=new VolumeControl(player);
 
         JPanel main = new JPanel();
 
@@ -228,8 +232,6 @@ class Popup extends JFrame {
 
         main.setDropTarget(new MyDropTarget(this));
 
-        player = new BasicPlayer();
-
         this.setTitle(data+" Playlist");//change the name to yours
 
         this.setSize(800, 450);
@@ -257,6 +259,7 @@ class Popup extends JFrame {
             DisplayError(song.getTitle()+" already Exists ");
 
         }
+
         else{
 
             playList.AddSong(song);

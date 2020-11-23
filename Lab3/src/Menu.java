@@ -4,8 +4,6 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +33,7 @@ class StreamPlayerGUI extends JFrame {
 
     private TreeList listTree=new TreeList();
 
-    private final BasicPlayer player;
+    private final BasicPlayer player=new BasicPlayer();
 
     private final PauseListener pl=new PauseListener();
 
@@ -73,27 +71,9 @@ class StreamPlayerGUI extends JFrame {
 
         JPanel controller=new JPanel();
 
-        controller.setSize(new Dimension(400,30));
+        controller.setSize(new Dimension(400,0));
 
-        volumeAdjustment=new JSlider();
-
-        volumeAdjustment.setMinimum(0);
-
-        volumeAdjustment.setMaximum(100);
-
-        volumeAdjustment.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                float volume=volumeAdjustment.getValue();
-                volume=volume/80;
-                System.out.println(volume);
-                try {
-                    player.setGain(volume);
-                } catch (BasicPlayerException basicPlayerException) {
-                    basicPlayerException.printStackTrace();
-                }
-            }
-        });
+        volumeAdjustment=new VolumeControl(player);
 
         table=lib.getTable();
 
@@ -268,11 +248,9 @@ class StreamPlayerGUI extends JFrame {
 
         main.setDropTarget(new MyDropTarget(this));
 
-        player = new BasicPlayer();
-
         this.setTitle("StreamPlayer by Nhan and Brandon");//change the name to yours
 
-        this.setSize(850, 450);
+        this.setSize(870, 410);
 
         //this.add(listTree);
 
@@ -423,9 +401,19 @@ class StreamPlayerGUI extends JFrame {
     }
 
     class PopupMenu extends JPopupMenu{
-        public PopupMenu(){
+        public PopupMenu() throws SQLException {
+
             setPopupSize(150,100);
+
             JMenuItem add=new JMenuItem("Add song to library");
+
+            JMenu submenu=new JMenu("Add song to playlist");
+
+            for(int i=0;i<playList.getPlalistname().size();i++){
+
+                submenu.add(new JMenuItem(playList.getPlalistname().get(i)));
+
+            }
 
             JMenuItem delete=new JMenuItem("Delete selected song");
 
@@ -473,6 +461,8 @@ class StreamPlayerGUI extends JFrame {
             play.addActionListener(new ButtonListener());
 
             this.add(add);
+
+            this.add(submenu);
 
             this.add(delete);
 
@@ -636,7 +626,7 @@ class StreamPlayerGUI extends JFrame {
                 }
 
             }
-            else if(e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")){
+            else if(e.getNewLeadSelectionPath()!=null&&e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")){
                 model.setRowCount(0);
                 model= (DefaultTableModel) lib.getTable().getModel();
                 table.setModel(model);

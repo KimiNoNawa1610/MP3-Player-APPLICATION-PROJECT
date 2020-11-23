@@ -38,7 +38,7 @@ public class PlayList extends DB {
         Statement statement=connection.createStatement();
         String newtable="CREATE TABLE "+name+"(" +
                 "SongID INTEGER not NULL, "+
-                "FOREIGN KEY (SongID) REFERENCES Songs(SongID));";
+                "FOREIGN KEY (SongID) REFERENCES Songs(SongID) ON DELETE CASCADE );";
         statement.executeUpdate(newtable);
         System.out.println("Creating new playlist");
         System.out.println("New playlist created \n");

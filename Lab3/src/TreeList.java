@@ -14,6 +14,7 @@ public class TreeList extends JPanel {
     private ArrayList<String> PlayList;
     private JTree PlaylistTree;
     private String data;
+    DefaultMutableTreeNode list=new DefaultMutableTreeNode("PlayList",true);
     public TreeList() throws SQLException {
         PlayList=new PlayList().getPlalistname();
         DefaultMutableTreeNode root=new DefaultMutableTreeNode();
@@ -54,9 +55,10 @@ public class TreeList extends JPanel {
 
     public void addPlaylist(String n){
         DefaultTreeModel newModel= (DefaultTreeModel) PlaylistTree.getModel();
-        DefaultMutableTreeNode oldRoot= (DefaultMutableTreeNode) newModel.getRoot();
+        DefaultMutableTreeNode oldRoot= (DefaultMutableTreeNode) newModel.getChild(newModel.getRoot(),1);
         newModel.insertNodeInto(new DefaultMutableTreeNode(n),oldRoot,oldRoot.getChildCount());
         PlayList.add(n);
+        PlaylistTree.expandRow(1);
     }
 
     public void removePlaylist(){
