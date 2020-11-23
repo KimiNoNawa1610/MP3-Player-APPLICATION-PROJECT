@@ -6,9 +6,7 @@ import java.sql.Statement;
 
 public class Library extends DB {
 
-    private JTable table;
-
-    private DefaultTableModel newTable=new DefaultTableModel(Cname,0);
+    private final DefaultTableModel newTable=new DefaultTableModel(Cname,0);
 
     private static Library lib=null;
 
@@ -76,7 +74,7 @@ public class Library extends DB {
 
         }
 
-        table=new JTable(newTable);
+        JTable table = new JTable(newTable);
 
         return table;
 

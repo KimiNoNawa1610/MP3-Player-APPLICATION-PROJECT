@@ -8,7 +8,7 @@ import java.util.List;
 
 class MyDropTarget extends DropTarget {
 
-    private JFrame gui;
+    private final JFrame gui;
 
     public MyDropTarget(JFrame n){
         gui=n;

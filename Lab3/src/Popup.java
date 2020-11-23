@@ -35,17 +35,15 @@ class Popup extends JFrame {
 
     private final JTextField playSong;
 
-    private JSlider volumeAdjustment;
-
     private int CurrentSelectedRow;
 
-    private PlayList playList=new PlayList();
+    private final PlayList playList=new PlayList();
 
     public Popup(String data) throws SQLException {
 
         JPanel controller=new JPanel();
 
-        volumeAdjustment=new VolumeControl(player);
+        JSlider volumeAdjustment = new VolumeControl(player);
 
         JPanel main = new JPanel();
 
@@ -238,11 +236,13 @@ class Popup extends JFrame {
 
         this.setTitle(data+" Playlist");//change the name to yours
 
-        this.setSize(800, 450);
+        this.setSize(850, 410);
 
         //this.add(listTree);
 
         this.add(main, BorderLayout.CENTER);
+
+        this.add(controller, BorderLayout.SOUTH);
 
     }
 

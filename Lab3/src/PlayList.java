@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class PlayList extends DB {
     private String name;
-    private DefaultTableModel newTable=new DefaultTableModel(Cname,0);
-    private JTable table;
+    private final DefaultTableModel newTable=new DefaultTableModel(Cname,0);
+
     public PlayList() throws SQLException {
     //default constructor
     }
@@ -34,7 +34,9 @@ public class PlayList extends DB {
 
         if(iD==""){
 
-            addsongtoDB(song);
+            Library lib=Library.getInstance();
+
+            lib.AddSong(song);
 
             resultSet=statement.executeQuery(getid);
 
@@ -57,6 +59,7 @@ public class PlayList extends DB {
         newTable.addRow(new Object[]{SongURl.get(SongURl.size()-1)[0],
 
                 song.getTitle(),song.getGenres(),song.getArtist(),song.getReleasedYear(), song.getComment()});
+
 
     }
 
@@ -120,7 +123,9 @@ public class PlayList extends DB {
 
             }
             if(!SongURl.isEmpty()) {
+
                 CurrentMax = Integer.parseInt(SongURl.get(SongURl.size() - 1)[0]);
+
             }
 
             System.out.println("Done");
@@ -130,7 +135,7 @@ public class PlayList extends DB {
             throwables.printStackTrace();
 
         }
-        table=new JTable(newTable);
+        JTable table = new JTable(newTable);
 
         return table;
 
@@ -160,9 +165,6 @@ public class PlayList extends DB {
         }
         return names;
     }
-
-
-
 
 }
 

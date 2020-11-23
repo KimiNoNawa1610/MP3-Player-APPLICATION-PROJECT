@@ -11,9 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TreeList extends JPanel {
-    private ArrayList<String> PlayList;
+    private final ArrayList<String> PlayList;
     private JTree PlaylistTree;
     private String data;
+    private String removedNode="";
     DefaultMutableTreeNode list=new DefaultMutableTreeNode("PlayList",true);
     public TreeList() throws SQLException {
         PlayList=new PlayList().getPlalistname();
@@ -65,6 +66,7 @@ public class TreeList extends JPanel {
         DefaultMutableTreeNode CurrentNode= (DefaultMutableTreeNode) PlaylistTree.getSelectionPath().getLastPathComponent();
         DefaultTreeModel model= (DefaultTreeModel) PlaylistTree.getModel();
         model.removeNodeFromParent(CurrentNode);
+        removedNode= CurrentNode.toString();
     }
 
 
@@ -94,6 +96,7 @@ public class TreeList extends JPanel {
                         PlayList Plist=new PlayList();
                         removePlaylist();
                         Plist.deletePlaylist(CurrentNode);
+                        StreamPlayerGUI.getInstance().getPopup().removeSubmenuItem(CurrentNode);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -108,6 +111,12 @@ public class TreeList extends JPanel {
 
     public JTree getPlaylistTree(){
         return PlaylistTree;
+    }
+
+    public String getRemovedNode(){
+
+        return removedNode;
+
     }
 
 

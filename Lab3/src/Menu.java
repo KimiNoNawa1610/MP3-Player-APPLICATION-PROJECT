@@ -31,31 +31,27 @@ class StreamPlayerGUI extends JFrame {
 
     private int isPlayingrow;
 
-    private TreeList listTree=new TreeList();
+    private final TreeList listTree=new TreeList();
 
     private final BasicPlayer player=new BasicPlayer();
 
     private final PauseListener pl=new PauseListener();
 
-    private  JTable table;
+    private final JTable table;
 
     private final JTextField playSong;
 
     private int CurrentSelectedRow;
 
-    private float Sound;
+    private final Library lib=Library.getInstance();
 
-    private  Library lib=Library.getInstance();
-
-    private PlayList playList=new PlayList();
+    private final PlayList playList=new PlayList();
 
     private static StreamPlayerGUI instance=null;
 
-    private JScrollPane scrollPane;
-
-    private static JSlider volumeAdjustment;
-
     private static String currentTable="Library";
+
+    private PopupMenu pop=new PopupMenu();
 
     public static StreamPlayerGUI getInstance() throws SQLException {
         if(instance == null)
@@ -63,11 +59,10 @@ class StreamPlayerGUI extends JFrame {
             instance =new StreamPlayerGUI();
         }
         return instance;
+
     }
 
     private StreamPlayerGUI() throws SQLException {
-
-        PopupMenu pop=new PopupMenu();
 
         JPanel main = new JPanel();
 
@@ -75,7 +70,7 @@ class StreamPlayerGUI extends JFrame {
 
         controller.setSize(new Dimension(400,0));
 
-        volumeAdjustment=new VolumeControl(player);
+        JSlider volumeAdjustment = new VolumeControl(player);
 
         table=lib.getTable();
 
@@ -215,14 +210,22 @@ class StreamPlayerGUI extends JFrame {
                 listTree.addPlaylist(listName);
                 playList.setName(listName);
                 JMenuItem n=new JMenuItem(listName);
+                n.setName(listName);
                 n.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String n=lib.getElement(CurrentSelectedRow);
+                        try {
+                            Mp3Song s=new Mp3Song(n);
+                            playList.AddSong(s);
+                        } catch (InvalidDataException | SQLException | UnsupportedTagException | IOException invalidDataException) {
+                            invalidDataException.printStackTrace();
+                        }
+
 
                     }
                 });
-                pop.addSubmenu(n);
+                pop.addSubmenuItem(n);
                 try {
                     playList.createPlaylist();
                 } catch (SQLException throwables) {
@@ -324,10 +327,15 @@ class StreamPlayerGUI extends JFrame {
         else{
 
             if(currentTable.equals("Library")){
+
                 lib.RemoveSong(CurrentSelectedRow);
+
             }
+
             else{
+
                 playList.RemoveSong(CurrentSelectedRow);
+
             }
 
             CurrentSelectedRow--;
@@ -335,6 +343,12 @@ class StreamPlayerGUI extends JFrame {
             isPlayingrow--;
 
         }
+
+    }
+
+    public PopupMenu getPopup(){
+
+        return pop;
 
     }
 
@@ -438,6 +452,7 @@ class StreamPlayerGUI extends JFrame {
             for(int i=0;i<playList.getPlalistname().size();i++){
                 String n=playList.getPlalistname().get(i);
                 JMenuItem itemN=new JMenuItem(n);
+                itemN.setName(n);
                 submenu.add(itemN);
                 itemN.addActionListener(new ActionListener() {
                     @Override
@@ -446,14 +461,8 @@ class StreamPlayerGUI extends JFrame {
                         String n=lib.getElement(CurrentSelectedRow);
                         try {
                             playList.AddSong(new Mp3Song(n));
-                        } catch (SQLException throwables) {
+                        } catch (SQLException | InvalidDataException | IOException | UnsupportedTagException throwables) {
                             throwables.printStackTrace();
-                        } catch (InvalidDataException invalidDataException) {
-                            invalidDataException.printStackTrace();
-                        } catch (IOException ioException) {
-                            ioException.printStackTrace();
-                        } catch (UnsupportedTagException unsupportedTagException) {
-                            unsupportedTagException.printStackTrace();
                         }
                     }
                 });
@@ -514,8 +523,25 @@ class StreamPlayerGUI extends JFrame {
 
         }
 
-        public void addSubmenu(JMenuItem item){
+        public void addSubmenuItem(JMenuItem item){
+
             submenu.add(item);
+
+        }
+
+        public void removeSubmenuItem(String n){
+
+            //System.out.println(n);
+
+            for(int i=0;i<submenu.getItemCount();i++){
+                //System.out.println(submenu.getItem(i).getName());
+                if(submenu.getItem(i).getName().equals(n)){
+
+                    submenu.remove(submenu.getItem(i));
+
+                }
+            }
+
         }
 
     }
@@ -583,36 +609,44 @@ class StreamPlayerGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(CurrentSelectedRow<lib.getSongURLSize()-1){
+            if(currentTable.equals("Library")) {
 
-                CurrentSelectedRow+=1;
-
+                SetInterval(lib.getSongURLSize());
             }
 
             else{
 
-                CurrentSelectedRow=0;
-
+                SetInterval(playList.getSongURLSize());
             }
 
             isPlayingrow=CurrentSelectedRow;
 
-            try {
-
-                player.open(new File(getURL()));
-
-                player.play();
-
-                table.setRowSelectionInterval(CurrentSelectedRow,CurrentSelectedRow);
-
-            } catch (BasicPlayerException basicPlayerException) {
-
-                basicPlayerException.printStackTrace();
-
-            }
 
         }
 
+    }
+
+    private void SetInterval(int songURLSize) {
+        if (CurrentSelectedRow < songURLSize - 1) {
+
+            CurrentSelectedRow += 1;
+
+        } else {
+
+            CurrentSelectedRow = 0;
+
+        }
+
+        isPlayingrow = CurrentSelectedRow;
+
+
+        try {
+            player.open(new File(getURL()));
+            player.play();
+            table.setRowSelectionInterval(CurrentSelectedRow, CurrentSelectedRow);
+        } catch (BasicPlayerException basicPlayerException) {
+            basicPlayerException.printStackTrace();
+        }
     }
 
     class SkipBackward implements  ActionListener{
@@ -628,7 +662,17 @@ class StreamPlayerGUI extends JFrame {
 
             else{
 
-                CurrentSelectedRow=lib.getSongURLSize()-1;
+                if(currentTable.equals("Library")){
+
+                    CurrentSelectedRow=lib.getSongURLSize()-1;
+
+                }
+
+                else{
+
+                    CurrentSelectedRow=playList.getSongURLSize()-1;
+
+                }
 
             }
 
@@ -663,8 +707,8 @@ class StreamPlayerGUI extends JFrame {
         public void valueChanged(TreeSelectionEvent e) {
             if(e.getNewLeadSelectionPath()!=null&&!e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")){
                 String path= e.getNewLeadSelectionPath().getLastPathComponent().toString();
-                playList.setName(path);
                 model.setRowCount(0);
+                playList.setName(path);
                 try {
                     model= (DefaultTableModel) playList.getTable().getModel();
                     table.setModel(model);
