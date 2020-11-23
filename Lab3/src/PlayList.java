@@ -99,6 +99,8 @@ public class PlayList extends DB {
 
             System.out.println("Retrieveing information from SQL data base...");
 
+            newTable.setRowCount(0);
+
             while(resultSet.next()){
 
                 System.out.println("...");
@@ -116,7 +118,7 @@ public class PlayList extends DB {
                 String comment=resultSet.getString("Comment");
 
                 String URl=resultSet.getString("URL");
-
+                
                 newTable.addRow(new Object[]{iD,title,genre,artist,year,comment});
 
                 SongURl.add(new String[]{iD, URl});
