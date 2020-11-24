@@ -6,12 +6,15 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /*
 
 Nhan Vo
@@ -54,6 +57,17 @@ class Popup extends JFrame {
         table=playList.getTable();
 
         table.setRowHeight(20);
+
+        table.setRowSelectionAllowed(false);
+
+        table.setFillsViewportHeight(true);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setDragEnabled(true);
+        table.getDragEnabled();
+        table.setDropMode(DropMode.ON);
+        table.setTransferHandler(new MyTransferHandlerT());
+
+
 
         JPanel sidePanel=new JPanel();
 
@@ -194,6 +208,31 @@ class Popup extends JFrame {
 
         });
 
+        table.setDropTarget( new DropTarget(){
+
+            public synchronized void drop (DropTargetDropEvent dtde){
+
+                Point point=dtde.getLocation();
+                //int column = table.ColumnAtPoint(point);
+                int row =table.rowAtPoint(point);
+                super.drop(dtde);
+                 System.out.println("hello");
+
+            }
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
         //  mitem4.addActionListener(new ActionListener() {
         //     @Override
         //    public void actionPerformed(ActionEvent e) {
@@ -245,6 +284,9 @@ class Popup extends JFrame {
         this.add(controller, BorderLayout.SOUTH);
 
     }
+
+
+
 
     public void DisplayError(String n){
 
