@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 abstract class DB {
@@ -17,7 +14,7 @@ abstract class DB {
 
     protected  ArrayList<String[]> SongURl=new ArrayList<>();
 
-    protected static int CurrentMax=0;
+    protected static int CurrentMax=1;
 
     protected DB() throws SQLException {}
 
@@ -50,9 +47,9 @@ abstract class DB {
 
         preparedStatement.executeUpdate();
 
-        if(CurrentMax!=0){
-            CurrentMax++;
-        }
+
+        CurrentMax++;
+
 
     }
 
@@ -71,7 +68,7 @@ abstract class DB {
     public String getLastestSongId(){
 
         if(SongURl.isEmpty()){
-            CurrentMax=0;
+            CurrentMax=1;
         }
 
         else if(CurrentMax==0 && !SongURl.isEmpty()){
@@ -113,6 +110,21 @@ abstract class DB {
 
         return SongURl.get(n)[0];
 
+    }
+
+    public String geturlbyId (String Id) throws SQLException {
+        String url = "SELECT URL FROM songs WHERE SongID="+Id;
+
+        try(Statement stmt = connection.createStatement())
+        {
+            ResultSet resultset= stmt.executeQuery(url);
+            while(resultset.next())
+            {
+                url=resultset.getString("URL");
+
+            }
+        }
+        return url;
     }
 
 }

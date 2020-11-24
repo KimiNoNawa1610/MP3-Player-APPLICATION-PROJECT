@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="docs">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/basicplayer3.0.zip!/basicplayer3.0/BasicPlayer3.0/docs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/basicplayer3.0.zip!/basicplayer3.0/BasicPlayer3.0/src" />
+      <root url="jar://$PROJECT_DIR$/basicplayer3.0.zip!/basicplayer3.0/BasicPlayer3.0/srctest/srctest" />
+    </SOURCES>
+  </library>
+</component>

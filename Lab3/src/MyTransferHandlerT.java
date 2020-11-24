@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -17,13 +18,10 @@ public class MyTransferHandlerT extends TransferHandler {
     public int getSourceActions(JComponent c)
     {
         return COPY_OR_MOVE;
-
-
     }
 
     protected Transferable createTransferable(JComponent source)
     {
-
         System.out.println("Transferable"+source);
         table=(JTable)source;
         model=(DefaultTableModel) table.getModel();
@@ -56,19 +54,19 @@ public class MyTransferHandlerT extends TransferHandler {
         }
         System.out.println("true");
         return true;
-
-
     }
 
     public boolean importData(TransferSupport support)
     {
         System.out.println("importData");
+        System.out.println(support.getComponent().getName());
         table=(JTable) support.getComponent();
         Object data= null;
         int row=table.getSelectedRow();
         int col=table.getSelectedColumn();
+
         try{
-            data= (Object) support.getTransferable().getTransferData(DataFlavor.stringFlavor);
+            data= (List) support.getTransferable().getTransferData(DataFlavor.stringFlavor);
 
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
@@ -78,8 +76,6 @@ public class MyTransferHandlerT extends TransferHandler {
         model.setValueAt(data,row,col);
         model.fireTableStructureChanged();
         return false;
-
-
     }
 
 }

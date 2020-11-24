@@ -30,19 +30,20 @@ class Popup extends JFrame {
 
     private int isPlayingrow;
 
-    private final BasicPlayer player=new BasicPlayer();
+    private  BasicPlayer player=new BasicPlayer();
 
-    private final PauseListener pl=new PauseListener();
+    private  PauseListener pl=new PauseListener();
 
-    private final JTable table;
+    private JTable table;
 
-    private final JTextField playSong;
+    private JTextField playSong;
 
     private int CurrentSelectedRow;
 
-    private final PlayList playList=new PlayList();
+    private  PlayList playList=new PlayList();
 
-    public Popup(String data) throws SQLException {
+    public Popup (String data) throws SQLException {
+
 
         JPanel controller=new JPanel();
 
@@ -60,12 +61,12 @@ class Popup extends JFrame {
 
         table.setRowSelectionAllowed(false);
 
-        table.setFillsViewportHeight(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.setDragEnabled(true);
+       // table.setFillsViewportHeight(true);
+       // table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+       // table.setDragEnabled(true);
         table.getDragEnabled();
-        table.setDropMode(DropMode.ON);
-        table.setTransferHandler(new MyTransferHandlerT());
+        //table.setDropMode(DropMode.ON);
+
 
 
 
@@ -111,7 +112,8 @@ class Popup extends JFrame {
                 super.windowClosing(e);
                 try {
                     player.stop();
-                } catch (BasicPlayerException basicPlayerException) {
+                    StreamPlayerGUI.getInstance().returnToPlaylist(data);
+                } catch (BasicPlayerException | SQLException basicPlayerException) {
                     basicPlayerException.printStackTrace();
                 }
             }
@@ -227,12 +229,6 @@ class Popup extends JFrame {
         });
 
 
-
-
-
-
-
-
         //  mitem4.addActionListener(new ActionListener() {
         //     @Override
         //    public void actionPerformed(ActionEvent e) {
@@ -284,6 +280,7 @@ class Popup extends JFrame {
         this.add(controller, BorderLayout.SOUTH);
 
     }
+
 
 
 
@@ -351,6 +348,10 @@ class Popup extends JFrame {
 
         return file.getAbsolutePath();
 
+    }
+    public PlayList getPlayList()
+    {
+        return playList;
     }
 
     class ButtonListener implements ActionListener {

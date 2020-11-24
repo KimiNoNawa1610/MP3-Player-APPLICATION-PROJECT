@@ -79,8 +79,9 @@ public class TreeList extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        Popup newwin =new Popup(data);
+                        Popup newwin=new Popup(data);
                         newwin.setVisible(true);
+                        StreamPlayerGUI.getInstance().returnToLib();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

@@ -76,17 +76,13 @@ class StreamPlayerGUI extends JFrame {
 
         table.setRowHeight(20);
 
+        //table.setRowSelectionAllowed(false);
+
         table.setDragEnabled(true);
 
-        table.getDragEnabled();
-        table.setRowSelectionAllowed(false);
-
-        table.setFillsViewportHeight(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
         table.setDropMode(DropMode.ON);
-        table.setTransferHandler(new MyTransferHandlerT());
 
+        table.getDragEnabled();
 
         listTree.addPlayListListener(new TreePlaylistSelect());
 
@@ -578,6 +574,21 @@ class StreamPlayerGUI extends JFrame {
         }
 
     }
+    public void returnToLib(){
+        currentTable="Library";
+        DefaultTableModel model= lib.getNewTable();
+        model.setRowCount(0);
+        model= (DefaultTableModel) lib.getTable().getModel();
+        table.setModel(model);
+    }
+
+    public void returnToPlaylist(String n) throws SQLException {
+        currentTable=n;
+        DefaultTableModel model= lib.getNewTable();
+        model.setRowCount(0);
+        model= (DefaultTableModel) playList.getTable().getModel();
+        table.setModel(model);
+    }
 
     class PauseListener implements ActionListener {
 
@@ -621,6 +632,8 @@ class StreamPlayerGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            System.out.println(CurrentSelectedRow);
+
             if(currentTable.equals("Library")) {
 
                 SetInterval(lib.getSongURLSize());
@@ -643,6 +656,7 @@ class StreamPlayerGUI extends JFrame {
 
             CurrentSelectedRow += 1;
 
+
         } else {
 
             CurrentSelectedRow = 0;
@@ -651,11 +665,10 @@ class StreamPlayerGUI extends JFrame {
 
         isPlayingrow = CurrentSelectedRow;
 
-
         try {
+            table.setRowSelectionInterval(CurrentSelectedRow, CurrentSelectedRow);
             player.open(new File(getURL()));
             player.play();
-            table.setRowSelectionInterval(CurrentSelectedRow, CurrentSelectedRow);
         } catch (BasicPlayerException basicPlayerException) {
             basicPlayerException.printStackTrace();
         }
@@ -665,6 +678,8 @@ class StreamPlayerGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            System.out.println(CurrentSelectedRow);
 
             if(CurrentSelectedRow>0){
 
@@ -711,7 +726,6 @@ class StreamPlayerGUI extends JFrame {
 
     public class TreePlaylistSelect implements TreeSelectionListener {
         DefaultTableModel model= lib.getNewTable();
-
         public TreePlaylistSelect() throws SQLException {
             super();
         }
@@ -731,7 +745,7 @@ class StreamPlayerGUI extends JFrame {
                 }
 
             }
-            else if(e.getNewLeadSelectionPath()!=null&&e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")){
+            else if(e.getNewLeadSelectionPath()!=null&&e.getNewLeadSelectionPath().getLastPathComponent().toString().equals("Library")&&!currentTable.equals("Library")){
                 model.setRowCount(0);
                 model= (DefaultTableModel) lib.getTable().getModel();
                 table.setModel(model);
