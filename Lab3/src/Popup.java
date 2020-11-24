@@ -44,7 +44,6 @@ class Popup extends JFrame {
 
     public Popup (String data) throws SQLException {
 
-
         JPanel controller=new JPanel();
 
         JSlider volumeAdjustment = new VolumeControl(player);
@@ -65,10 +64,10 @@ class Popup extends JFrame {
        // table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
        // table.setDragEnabled(true);
         table.getDragEnabled();
+
         //table.setDropMode(DropMode.ON);
 
-
-
+        table.setRowSelectionAllowed(true);
 
         JPanel sidePanel=new JPanel();
 
