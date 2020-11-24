@@ -54,12 +54,14 @@ public class TreeList extends JPanel {
         PlaylistTree.addTreeSelectionListener(ls);
     }
 
-    public void addPlaylist(String n){
+    public void addPlaylist(String n) throws SQLException {
         DefaultTreeModel newModel= (DefaultTreeModel) PlaylistTree.getModel();
         DefaultMutableTreeNode oldRoot= (DefaultMutableTreeNode) newModel.getChild(newModel.getRoot(),1);
         newModel.insertNodeInto(new DefaultMutableTreeNode(n),oldRoot,oldRoot.getChildCount());
         PlayList.add(n);
         PlaylistTree.expandRow(1);
+        PlaylistTree.setSelectionRow(PlayList.size()+1);
+        StreamPlayerGUI.getInstance().returnToPlaylist(n);
     }
 
     public void removePlaylist(){

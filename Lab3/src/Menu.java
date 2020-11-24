@@ -215,8 +215,14 @@ class StreamPlayerGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String listName=JOptionPane.showInputDialog(null,"Please enter the playlist name");
-                listTree.addPlaylist(listName);
-                playList.setName(listName);
+                try {
+                    playList.setName(listName);
+                    playList.createPlaylist();
+                    listTree.addPlaylist(listName);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
                 JMenuItem n=new JMenuItem(listName);
                 n.setName(listName);
                 n.addActionListener(new ActionListener() {
@@ -234,11 +240,6 @@ class StreamPlayerGUI extends JFrame {
                     }
                 });
                 pop.addSubmenuItem(n);
-                try {
-                    playList.createPlaylist();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
             }
         });
 
@@ -294,6 +295,8 @@ class StreamPlayerGUI extends JFrame {
 
         Mp3Song song=new Mp3Song(n);
 
+        System.out.println(currentTable);
+
         if(currentTable.equals("Library")){
             if(lib.SongExist(song)&&playList.SongExist(song)){
 
@@ -303,6 +306,7 @@ class StreamPlayerGUI extends JFrame {
             lib.AddSong(song);
         }
         else{
+
             if(playList.SongExist(song)){
 
                 DisplayError(song.getTitle()+" already Exists ");
@@ -327,32 +331,43 @@ class StreamPlayerGUI extends JFrame {
 
     public void deleteSong() throws SQLException {
 
-        if(isPlaying()){
 
-            DisplayError(" Song id: "+lib.getSongid(CurrentSelectedRow)+" is playing \nCannot delete at this time");
 
-        }
-        else{
+        if(currentTable.equals("Library")){
+            if(isPlaying()){
 
-            if(currentTable.equals("Library")){
-
-                lib.RemoveSong(CurrentSelectedRow);
+                DisplayError(" Song id: "+lib.getSongid(CurrentSelectedRow)+" is playing \nCannot delete at this time");
 
             }
-
             else{
-
-                playList.RemoveSong(CurrentSelectedRow);
-
+                lib.RemoveSong(CurrentSelectedRow);
             }
 
-            CurrentSelectedRow--;
 
-            isPlayingrow--;
 
         }
+
+        else{
+            if(isPlaying()){
+
+                DisplayError(" Song id: "+playList.getSongid(CurrentSelectedRow)+" is playing \nCannot delete at this time");
+
+            }
+            else {
+                playList.RemoveSong(CurrentSelectedRow);
+            }
+
+
+
+        }
+
+        CurrentSelectedRow--;
+
+        isPlayingrow--;
 
     }
+
+
 
     public PopupMenu getPopup(){
 
