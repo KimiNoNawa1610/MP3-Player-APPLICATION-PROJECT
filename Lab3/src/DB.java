@@ -112,7 +112,7 @@ abstract class DB {
 
     }
 
-    public String geturlbyId (int Id) throws SQLException {
+    public String geturlbyId (String Id) throws SQLException {
         String url = "SELECT URL FROM songs WHERE SongID="+Id;
 
         try(Statement stmt = connection.createStatement())

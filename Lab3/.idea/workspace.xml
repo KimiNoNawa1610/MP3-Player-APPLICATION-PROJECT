@@ -21,40 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e0c4ff34-2069-484f-964b-62e6526253a9" name="Default Changelist" comment="latest not finish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/DB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Library.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab3/MyDropTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/MyDropTarget.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/MyTransferHandlerT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/PlayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/PlayList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/Popup$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Popup$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/Popup$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Popup$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/Popup$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Popup$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/Popup$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Popup$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/Popup$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Popup$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab3/Popup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/Popup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$ButtonListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PauseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PauseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$PopupMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$SkipBackward.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$SkipBackward.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$SkipFoward.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$SkipFoward.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$StopListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$StopListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$TreePlaylistSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI$TreePlaylistSelect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab3/StreamPlayerGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyDropTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyDropTarget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTransferHandlerT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Popup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Popup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,28 +210,28 @@
     </state>
     <state x="708" y="207" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606176693452" />
     <state x="885" y="271" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604693692963" />
-    <state width="1493" height="331" key="GridCell.Tab.0.bottom" timestamp="1606251787384">
+    <state width="1493" height="331" key="GridCell.Tab.0.bottom" timestamp="1606254295645">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="331" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606251787384" />
+    <state width="1493" height="331" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
     <state width="1877" height="100" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606167943753" />
-    <state width="1493" height="331" key="GridCell.Tab.0.center" timestamp="1606251787384">
+    <state width="1493" height="331" key="GridCell.Tab.0.center" timestamp="1606254295645">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="331" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606251787384" />
+    <state width="1493" height="331" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
     <state width="1877" height="100" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606167943753" />
-    <state width="1493" height="331" key="GridCell.Tab.0.left" timestamp="1606251787383">
+    <state width="1493" height="331" key="GridCell.Tab.0.left" timestamp="1606254295645">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="331" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606251787383" />
+    <state width="1493" height="331" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
     <state width="1877" height="100" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606167943753" />
-    <state width="1493" height="331" key="GridCell.Tab.0.right" timestamp="1606251787384">
+    <state width="1493" height="331" key="GridCell.Tab.0.right" timestamp="1606254295645">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="331" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606251787384" />
+    <state width="1493" height="331" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
     <state width="1877" height="100" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606167943753" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1606110991536">

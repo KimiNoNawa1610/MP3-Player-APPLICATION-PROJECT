@@ -61,11 +61,11 @@ class Popup extends JFrame {
 
         table.setRowSelectionAllowed(false);
 
-        table.setFillsViewportHeight(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.setDragEnabled(true);
+       // table.setFillsViewportHeight(true);
+       // table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+       // table.setDragEnabled(true);
         table.getDragEnabled();
-        table.setDropMode(DropMode.ON);
+        //table.setDropMode(DropMode.ON);
 
 
 

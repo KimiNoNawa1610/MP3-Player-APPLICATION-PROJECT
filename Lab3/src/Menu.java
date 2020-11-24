@@ -82,7 +82,7 @@ class StreamPlayerGUI extends JFrame {
         table.setDragEnabled(true);
         table.setDropMode(DropMode.ON);
         table.getDragEnabled();
-        table.setDropTarget(new MyDropTarget(playList));
+
 
 
 

@@ -21,14 +21,30 @@ class MyDropTarget extends DropTarget {
     }
 
     public  void drop(DropTargetDropEvent evt) {
-
+       System.out.println("brandon ormeno");
         try {
 
             evt.acceptDrop(DnDConstants.ACTION_COPY);
 
             if(evt.getTransferable().isDataFlavorSupported(DataFlavor.stringFlavor))
-            {
-                System.out.println("hello my name is brandon");
+           {
+               String s = (String) evt.getTransferable().getTransferData(DataFlavor.stringFlavor);
+               String[] sepSong=s.split("\n");
+               for(int i=0;i<sepSong.length;i++)
+               {
+                   int index= sepSong[i].indexOf("\t");
+                   String id = sepSong[i].substring(0,index);
+
+                   if (gui instanceof Popup) {
+                       Popup gui2 = (Popup) gui;
+                       playlist = gui2.getPlayList();
+                       String url=playlist.geturlbyId(id);
+                       gui2.addSong(url);
+
+
+                   }
+
+               }
 
             }
             else {
