@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 abstract class DB {
@@ -113,6 +110,21 @@ abstract class DB {
 
         return SongURl.get(n)[0];
 
+    }
+
+    public String geturlbyId (int Id) throws SQLException {
+        String url = "SELECT URL FROM songs WHERE SongID="+Id;
+
+        try(Statement stmt = connection.createStatement())
+        {
+            ResultSet resultset= stmt.executeQuery(url);
+            while(resultset.next())
+            {
+                url=resultset.getString("URL");
+
+            }
+        }
+        return url;
     }
 
 }

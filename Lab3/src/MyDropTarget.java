@@ -8,10 +8,16 @@ import java.util.List;
 
 class MyDropTarget extends DropTarget {
 
-    private final JFrame gui;
+    private  JFrame gui=null;
+    private PlayList playlist=null;
 
     public MyDropTarget(JFrame n){
         gui=n;
+    }
+
+    public MyDropTarget(PlayList n){
+
+        playlist=n;
     }
 
     public  void drop(DropTargetDropEvent evt) {
@@ -20,25 +26,32 @@ class MyDropTarget extends DropTarget {
 
             evt.acceptDrop(DnDConstants.ACTION_COPY);
 
-            List result = new ArrayList();
+            if(evt.getTransferable().isDataFlavorSupported(DataFlavor.stringFlavor))
+            {
+                System.out.println("hello my name is brandon");
 
-            result = (List) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+            }
+            else {
 
-            for(Object o : result){
+                List result = new ArrayList();
 
-                System.out.println(o.toString());
-                if(gui instanceof StreamPlayerGUI) {
-                    System.out.println();
-                    StreamPlayerGUI gui2 =(StreamPlayerGUI)gui;
-                    gui2.addSong(o.toString());
+                result = (List) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+
+                for (Object o : result) {
+
+                    System.out.println(o.toString());
+                    if (gui instanceof StreamPlayerGUI) {
+                        System.out.println();
+                        StreamPlayerGUI gui2 = (StreamPlayerGUI) gui;
+                        gui2.addSong(o.toString());
+                    }
+                    if (gui instanceof Popup) {
+                        Popup gui2 = (Popup) gui;
+                        gui2.addSong(o.toString());
+
+                    }
+
                 }
-                if(gui instanceof Popup)
-                {
-                    Popup gui2 =(Popup) gui;
-                    gui2.addSong(o.toString());
-
-                }
-
             }
 
         }

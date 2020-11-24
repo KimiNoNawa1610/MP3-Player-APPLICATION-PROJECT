@@ -156,6 +156,11 @@ public class PlayList extends DB {
 
     }
 
+    public String getName()
+    {
+        return this.name;
+    }
+
     public ArrayList<String> getPlalistname() throws SQLException {
         ArrayList<String> names= new ArrayList<>();
         Statement statement=connection.createStatement();

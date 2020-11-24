@@ -76,16 +76,15 @@ class StreamPlayerGUI extends JFrame {
 
         table.setRowHeight(20);
 
+        //table.setRowSelectionAllowed(false);
+
+
         table.setDragEnabled(true);
-
-        table.getDragEnabled();
-        table.setRowSelectionAllowed(false);
-
-        table.setFillsViewportHeight(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
         table.setDropMode(DropMode.ON);
-        table.setTransferHandler(new MyTransferHandlerT());
+        table.getDragEnabled();
+        table.setDropTarget(new MyDropTarget(playList));
+
+
 
 
         listTree.addPlayListListener(new TreePlaylistSelect());
