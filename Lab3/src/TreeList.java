@@ -1,3 +1,5 @@
+import javazoom.jlgui.basicplayer.BasicPlayerException;
+
 import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -100,7 +102,10 @@ public class TreeList extends JPanel {
                         removePlaylist();
                         Plist.deletePlaylist(CurrentNode);
                         StreamPlayerGUI.getInstance().getPopup().removeSubmenuItem(CurrentNode);
-                    } catch (SQLException throwables) {
+                        StreamPlayerGUI.getInstance().returnToLib();
+                        PlaylistTree.setSelectionRow(0);
+                        StreamPlayerGUI.getInstance().stopPlayer();
+                    } catch (SQLException | BasicPlayerException throwables) {
                         throwables.printStackTrace();
                     }
 

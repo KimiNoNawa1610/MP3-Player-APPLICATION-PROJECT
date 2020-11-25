@@ -15,7 +15,7 @@ public class VolumeControl extends JSlider {
             public void stateChanged(ChangeEvent e) {
                 float volume=getValue();
                 volume=volume/80;
-                System.out.println(volume);
+                System.out.println("Current Volume: "+volume);
                 try {
                     player.setGain(volume);
                 } catch (BasicPlayerException basicPlayerException) {

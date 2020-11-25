@@ -37,7 +37,7 @@ public class Library extends DB {
 
             while(resultSet.next()){
 
-                newTable.setRowCount(0);
+                //newTable.setRowCount(0);
 
                 System.out.println("...");
 

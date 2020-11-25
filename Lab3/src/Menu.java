@@ -307,12 +307,6 @@ class StreamPlayerGUI extends JFrame {
         }
         else{
 
-            if(playList.SongExist(song)){
-
-                DisplayError(song.getTitle()+" already Exists ");
-
-            }
-
             playList.AddSong(song);
 
         }
@@ -396,6 +390,10 @@ class StreamPlayerGUI extends JFrame {
             url=playList.getElement(CurrentSelectedRow);
         }
         return url;
+    }
+
+    public void stopPlayer() throws BasicPlayerException {
+        player.stop();
     }
 
     class ButtonListener implements ActionListener {
@@ -599,6 +597,7 @@ class StreamPlayerGUI extends JFrame {
 
     public void returnToPlaylist(String n) throws SQLException {
         currentTable=n;
+        System.out.println(currentTable);
         DefaultTableModel model= lib.getNewTable();
         model.setRowCount(0);
         model= (DefaultTableModel) playList.getTable().getModel();

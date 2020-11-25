@@ -280,6 +280,9 @@ class Popup extends JFrame {
 
     }
 
+    public void StopPlayer() throws BasicPlayerException {
+        player.stop();
+    }
 
 
 
