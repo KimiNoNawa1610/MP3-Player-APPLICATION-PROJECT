@@ -232,6 +232,7 @@ class StreamPlayerGUI extends JFrame {
                         try {
                             Mp3Song s=new Mp3Song(n);
                             playList.AddSong(s);
+                            listTree.popRefresh();
                         } catch (InvalidDataException | SQLException | UnsupportedTagException | IOException invalidDataException) {
                             invalidDataException.printStackTrace();
                         }
@@ -482,6 +483,7 @@ class StreamPlayerGUI extends JFrame {
                         String n=lib.getElement(CurrentSelectedRow);
                         try {
                             playList.AddSong(new Mp3Song(n));
+                            listTree.popRefresh();
                         } catch (SQLException | InvalidDataException | IOException | UnsupportedTagException throwables) {
                             throwables.printStackTrace();
                         }

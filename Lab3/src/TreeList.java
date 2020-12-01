@@ -17,6 +17,8 @@ public class TreeList extends JPanel {
     private JTree PlaylistTree;
     private String data;
     private String removedNode="";
+    private ArrayList<Popup> poplist=new ArrayList<>();
+    Popup newwin;
     DefaultMutableTreeNode list=new DefaultMutableTreeNode("PlayList",true);
     public TreeList() throws SQLException {
         PlayList=new PlayList().getPlalistname();
@@ -83,9 +85,10 @@ public class TreeList extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        Popup newwin=new Popup(data);
+                        newwin=new Popup(data);
                         newwin.setVisible(true);
                         StreamPlayerGUI.getInstance().returnToLib();
+                        poplist.add(newwin);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -105,6 +108,9 @@ public class TreeList extends JPanel {
                         StreamPlayerGUI.getInstance().returnToLib();
                         PlaylistTree.setSelectionRow(0);
                         StreamPlayerGUI.getInstance().stopPlayer();
+                        for(Popup i: poplist){
+                            i.dispose();
+                        }
                     } catch (SQLException | BasicPlayerException throwables) {
                         throwables.printStackTrace();
                     }
@@ -125,6 +131,12 @@ public class TreeList extends JPanel {
 
         return removedNode;
 
+    }
+
+    public void popRefresh() throws SQLException {
+        for(Popup i:poplist){
+            i.refresh();
+        }
     }
 
 

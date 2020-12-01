@@ -4,6 +4,7 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.dnd.DropTarget;
@@ -220,11 +221,6 @@ class Popup extends JFrame {
                  System.out.println("hello");
 
             }
-
-
-
-
-
         });
 
 
@@ -282,6 +278,11 @@ class Popup extends JFrame {
 
     public void StopPlayer() throws BasicPlayerException {
         player.stop();
+    }
+
+    public void refresh() throws SQLException {
+        DefaultTableModel model= (DefaultTableModel) playList.getTable().getModel();
+        table.setModel(model);
     }
 
 

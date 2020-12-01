@@ -8,9 +8,49 @@ import java.util.ArrayList;
 public class PlayList extends DB {
     private String name;
     private final DefaultTableModel newTable=new DefaultTableModel(Cname,0);
-
+    JTable table;
     public PlayList() throws SQLException {
     //default constructor
+    }
+    public JTable refresh() throws SQLException {
+        newTable.setRowCount(0);
+        System.out.println("Connected to SQL data base");
+
+        Statement statement=connection.createStatement();
+
+        String columns = "SELECT * FROM Songs INNER JOIN "+name+" ON "+name+".SongID = "+"Songs.SongID";
+
+        ResultSet resultSet=statement.executeQuery(columns);
+
+        System.out.println("Retrieveing information from SQL data base...");
+
+        newTable.setRowCount(0);
+
+        while(resultSet.next()) {
+
+            System.out.println("...");
+
+            String iD = resultSet.getString("SongID");
+
+            String title = resultSet.getString("Title");
+
+            String genre = resultSet.getString("Genre");
+
+            String artist = resultSet.getString("Artist");
+
+            String year = resultSet.getString("Year");
+
+            String comment = resultSet.getString("Comment");
+
+            String URl = resultSet.getString("URL");
+
+            newTable.addRow(new Object[]{iD, title, genre, artist, year, comment});
+
+
+        }
+        table=new JTable(newTable);
+        return table;
+
     }
 
     @Override
@@ -137,7 +177,7 @@ public class PlayList extends DB {
             throwables.printStackTrace();
 
         }
-        JTable table = new JTable(newTable);
+        table = new JTable(newTable);
 
         return table;
 
