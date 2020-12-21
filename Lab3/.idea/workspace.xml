@@ -64,7 +64,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../mysql-connector-java-8.0.21.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -77,7 +77,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.Driver">
+  <component name="RunManager" selected="Application.MiniPlayerTest">
     <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Driver" />
       <module name="Lab3" />
@@ -92,21 +92,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+    <configuration name="MiniPlayerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MiniPlayerTest" />
+      <module name="Lab3" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MiniPlayerTest" />
         <item itemvalue="Application.Driver" />
         <item itemvalue="Application.JTreetesting" />
       </list>
@@ -162,6 +157,11 @@
       <workItem from="1606260260616" duration="1998000" />
       <workItem from="1606262320257" duration="5845000" />
       <workItem from="1606268660525" duration="70000" />
+      <workItem from="1607036563436" duration="22000" />
+      <workItem from="1607475238205" duration="3075000" />
+      <workItem from="1607478377331" duration="197000" />
+      <workItem from="1607479353530" duration="295000" />
+      <workItem from="1607479739349" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="latest not finish">
       <created>1605895920760</created>
@@ -225,35 +225,35 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="704" y="123" key="Diagram.Print.Preview.Dialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606267502193" />
-    <state x="708" y="207" key="FileChooserDialogImpl" timestamp="1606176693452">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="885" y="271" key="FileChooserDialogImpl" timestamp="1607036580470">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="708" y="207" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606176693452" />
-    <state x="885" y="271" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1604693692963" />
-    <state width="1860" height="335" key="GridCell.Tab.0.bottom" timestamp="1606268478493">
+    <state x="885" y="271" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607036580470" />
+    <state width="1860" height="461" key="GridCell.Tab.0.bottom" timestamp="1607479650541">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="331" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
-    <state width="1860" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606268478493" />
-    <state width="1860" height="335" key="GridCell.Tab.0.center" timestamp="1606268478493">
+    <state width="1860" height="461" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607479650541" />
+    <state width="1860" height="461" key="GridCell.Tab.0.center" timestamp="1607479650541">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="331" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
-    <state width="1860" height="335" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606268478493" />
-    <state width="1860" height="335" key="GridCell.Tab.0.left" timestamp="1606268478493">
+    <state width="1860" height="461" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607479650541" />
+    <state width="1860" height="461" key="GridCell.Tab.0.left" timestamp="1607479650541">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="331" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
-    <state width="1860" height="335" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606268478493" />
-    <state width="1860" height="335" key="GridCell.Tab.0.right" timestamp="1606268478493">
+    <state width="1860" height="461" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607479650541" />
+    <state width="1860" height="461" key="GridCell.Tab.0.right" timestamp="1607479650541">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="331" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606254295645" />
     <state width="1877" height="100" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606170497607" />
-    <state width="1860" height="335" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606268478493" />
+    <state width="1860" height="461" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607479650541" />
     <state width="1860" height="335" key="GridCell.Tab.1.bottom" timestamp="1606268478494">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -303,10 +303,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1196" y="267" key="extract.method.dialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1606167713157" />
-    <state x="-1355" y="203" key="new project wizard" timestamp="1604449536707">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state x="565" y="203" key="new project wizard" timestamp="1607036582170">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="-1355" y="203" key="new project wizard/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1604449536707" />
+    <state x="565" y="203" key="new project wizard/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607036582170" />
     <state x="755" y="287" key="refactoring.ChangeSignatureDialog" timestamp="1605901664363">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

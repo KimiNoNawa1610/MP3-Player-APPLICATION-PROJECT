@@ -1,127 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="12b18b24-9c94-49c3-a558-58be2e9822fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="863c8241-4155-4e7f-9d22-88f05081b431" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1heyxsfPYf7Do40KB2iCFRZucTo" />
+  <component name="ProjectId" id="1lAOlt8loakGMz3OHmMvw0aJP2A" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="14" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <module name="CECS-343" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="proj" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="14" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Driver" />
-      <module name="CECS-343" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="12b18b24-9c94-49c3-a558-58be2e9822fe" name="Default Changelist" comment="" />
-      <created>1600386102874</created>
+      <changelist id="863c8241-4155-4e7f-9d22-88f05081b431" name="Default Changelist" comment="" />
+      <created>1607036584943</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600386102874</updated>
+      <updated>1607036584943</updated>
+      <workItem from="1607036585994" duration="479000" />
+      <workItem from="1607037857580" duration="67000" />
+      <workItem from="1607037958384" duration="32000" />
+      <workItem from="1607038615650" duration="654000" />
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="272" y="39" width="1089" height="785" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603251941415">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="452" y="113" key="#Project_Structure" timestamp="1607036850304">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="272" y="39" width="1089" height="785" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603251941415" />
-    <state x="549" y="117" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1603251953050">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="452" y="113" key="#Project_Structure/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607036850304" />
+    <state x="426" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607037065899">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="549" y="117" key="#com.intellij.ide.macro.MacrosDialog/0.0.1536.824@0.0.1536.824" timestamp="1603251953050" />
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603251806579">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="426" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607037065899" />
+    <state x="701" y="329" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1607037038966">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1603251806579" />
-    <state x="866" y="217" key="FileChooserDialogImpl" timestamp="1603251981100">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="701" y="329" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607037038966" />
+    <state x="752" y="293" key="FileChooserDialogImpl" timestamp="1607041920545">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="866" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603251981100" />
-    <state x="-838" y="285" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600386202454" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603251994426">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="752" y="293" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607041920545" />
+    <state x="676" y="431" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1607036607291">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603251994426">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="676" y="431" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607036607291" />
+    <state x="354" y="159" key="new project wizard" timestamp="1607041921226">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603251994426">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603251994426">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603251994426" />
-    <state x="-1235" y="164" key="new project wizard" timestamp="1600386204007">
-      <screen x="-1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="-1235" y="164" key="new project wizard/0.0.1920.1080/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1600386204007" />
+    <state x="354" y="159" key="new project wizard/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1607041921226" />
   </component>
 </project>
